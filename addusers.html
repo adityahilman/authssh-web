@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>User Add Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div align="center" class="header">
+            <h1>Add Users</h1>
+        </div>
+        <form id="form1" name="form1" method="post" action="submit_users.php">
+             <table width="420" border="0" align="center">
+                <tr>
+                    <td colspan="3"><div align="center">Add Users</div></td>
+                </tr>
+                <tr>
+                    <td width="147">Username</td>
+                    <td width="19">&nbsp;</td>
+                    <td width="240"><label><input type="text" name="txtUsername" id="txtUsername" /></label></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td>&nbsp;</td>
+                    <td><label><input type="password" name="txtPassword" id="txtPassword" /></label></td>
+                </tr>
+                <tr>
+                    <td>User Level</td>
+                    <td>&nbsp;</td>
+                    <td><label>
+                    <select name="txtLevel" id="txtLevel">
+                      <option value="0">- Level -</option>
+                      <option value="administrator">Administrator</option>
+                      <option value="user">User</option>
+                      <option value="superuser">Super User</option>
+                    </select>
+                  </label></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <label>
+                            <input type="submit" name="btnSubmit" id="btnSubmit" value="Submit" />
+                        </label>
+                        <label>
+                            <input type="reset" name="btnReset" id="btnReset" value="Reset" />
+                        </label>
+                    </td>
+                </tr>
+             </table>
+        </form>
+    </body>
+</html>
