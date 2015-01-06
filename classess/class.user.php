@@ -76,4 +76,12 @@ class USERS {
         $query_linux = mysql_query($sql_linux) or die(mysql_error());
         return $query_linux;
     }
+    
+    public function getSearchUsers() {
+        $search_user = "SELECT * FROM USER_ADMIN WHERE USERNAME_ADMIN = '".$this->getUsername()."' ";
+        $c = new ConnectionDB();
+        $c->openConnection();
+        $query_search = mysql_query($search_user) or die (mysql_error());
+        return $query_search;
+    }
 }

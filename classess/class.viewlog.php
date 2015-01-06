@@ -20,6 +20,14 @@ class ViewLog {
 //put your code here
     private $username, $ip, $status, $c ;
     
+    public function getUsername() {
+        return $this->username;
+    }
+
+    public function setUsername($username) {
+        $this->username = $username;
+    }
+
     // function view log
     public function getViewLog() {
         $sql_view="SELECT * FROM USER_LOG";
@@ -61,5 +69,13 @@ class ViewLog {
         $c->openConnection();
         $query=  mysql_query($sql_ip) or die (mysql_error());
         return $query;
+    }
+    
+     public function getSearchUsers() {
+        $search_user = "SELECT * FROM USER_LOG WHERE USER_NAME = '".$this->getUsername()."' ";
+        $c = new ConnectionDB();
+        $c->openConnection();
+        $query_search = mysql_query($search_user) or die (mysql_error());
+        return $query_search;
     }
 }
