@@ -82,6 +82,7 @@ $list = $data->getViewLog();
 					</div> <!-- end content-module-heading -->
 					
 					<div class="content-module-main">
+                                            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                                             Filter by : 
 						<select id="dropdown-actions">
                                                     <option value="0">- Filter -</option>
@@ -90,6 +91,21 @@ $list = $data->getViewLog();
                                                     <option value="date">Date</option>
                                                     <option value="status">Status</option>
 						</select>
+                                                <input type="text" id="simple-input" name="username" class="round default-width-input" />
+                                                <input type="submit" name="btnSearch" id="btnSubmit" class="button round blue image-right ic-search text-upper" value="Search"/>
+                                            </form>
+                                            <?php
+                                            if (isset($_POST['btnSearch'])) {
+                                                $username = $_POST['username'];
+                                                $userid = shell_exec("id $username");
+                                                if (empty($userid)) {
+                                                    echo "USER NOT FOUND";
+                                                } else {
+                                                    echo "$userid";
+                                                }
+                                            }
+                                            ?>
+                                            <br>
 						<table>
 							<thead>
 								<tr>
