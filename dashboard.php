@@ -75,7 +75,7 @@ $list = $data->getViewLastTenLog();
 				<h3>Menu</h3>
 				<ul>
                                         <li><a href="dashboard.php">Dashboard</a></li>
-					<li><a href="#">View Linux Users</a></li>
+                                        <li><a href="view.linuxusers.php">View Linux Users</a></li>
 					<li><a href="#">View Web Portal Users</a></li>
                                         <li><a href="view.summary.php">Report</a></li>
 				</ul>	
