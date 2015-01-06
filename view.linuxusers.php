@@ -26,12 +26,9 @@ if (!isset($_SESSION['USERNAME_ADMIN']))
 </head>
 <body>
 <?php
-include_once "jpgraph/src/jpgraph.php";
-include_once "jpgraph/src/jpgraph_bar.php";
-include_once "jpgraph/src/jpgraph_line.php";
-include 'classess/class.viewlog.php';
-$data = new ViewLog();
-$list = $data->getViewLastTenLog();
+include 'classess/class.user.php';
+$data = new USERS;
+$list = $data->getUsersLinux();
 ?>
 	<!-- TOP BAR -->
 	<div id="top-bar">
@@ -89,39 +86,13 @@ $list = $data->getViewLastTenLog();
 					</div> <!-- end content-module-heading -->
 					<div class="content-module-main cf">
                                             <div class="half-size-column fl">
-                                                <img src="barchart.user.php">
-                                            </div>
-                                            <div class="half-size-column fr">
                                                 <div class="content-module-main">
-                                                    <h1>Login Summary</h1>
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th height="40px">Username</th>
-                                                            <th>Hit</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <!-- Paging -->
-                                                    </tfoot>
-                                                    <tbody>
-                                                        <?php 
-                                                        $summary = $data->getUserSummaryLog();
-                                                        while ($row = mysql_fetch_array($summary)) { 
-                                                            ?>
-                                                            <tr>
-                                                                <td height="25px"><?= $row['USER_NAME'] ?></td>
-                                                                <td height="25px"><?= $row['COUNT(*)'] ?></td>
-                                                            </tr>
-                                                        <?php } ?>
-                                                    </tbody>
-                                                </table>
-                                                    <br>
+                                                    <h1>Linux User</h1>
                                                     <table>
                                                         <thead>
                                                             <tr>
-                                                                <th height="40px">IP Address</th>
-                                                                <th>Hit</th>
+                                                                <th height="40px">ID</th>
+                                                                <th>Username</th>
                                                             </tr>
                                                         </thead>
                                                         <tfoot>
@@ -129,18 +100,24 @@ $list = $data->getViewLastTenLog();
                                                         </tfoot>
                                                         <tbody>
                                                             <?php
-                                                            $summary_ip = $data->getIpSummaryLog();
-                                                            while ($row_ip = mysql_fetch_array($summary_ip)) {
+                                                            $summary = $data->getUsersLinux();
+                                                            while ($row = mysql_fetch_array($summary)) {
                                                                 ?>
                                                                 <tr>
-                                                                    <td height="25px"><?= $row_ip['USER_IP'] ?></td>
-                                                                    <td height="25px"><?= $row_ip['COUNT(*)'] ?></td>
+                                                                    <td height="25px" width="5px"><?= $row['ID'] ?></td>
+                                                                    <td height="25px" width="5px"><?= $row['USER_NAME'] ?></td>
                                                                 </tr>
                                                             <?php } ?>
                                                         </tbody>
                                                     </table>
+                                                    <br>
+
                                                 </div>
                                             </div>
+                                            <div class="half-size-column fr">
+                                                Search User
+                                            </div>
+                                            
 					</div> <!-- end content-module-main -->
 				</div> <!-- end content-module -->
 				<div class="content-module">
@@ -152,28 +129,8 @@ $list = $data->getViewLastTenLog();
 					<!--<div class="content-module-main cf"> -->
                                         <div class="content-module-main">
                                             <table>
-							<thead>
-								<tr>
-                                                                        <th>Username</th>
-									<th>IP Address</th>
-									<th>Date</th>
-                                                                        <th>Status</th>        
-								</tr>
-							</thead>
-							<tfoot>
-								<!-- Paging -->
-							</tfoot>
-							<tbody>
-                                                            <?php while($row= mysql_fetch_array($list)) { ?>
-								<tr>
-									<td><?= $row['USER_NAME'] ?></td>
-                                                                        <td><?= $row['USER_IP'] ?></td>
-									<td><?= $row['USER_LASTLOGIN'] ?></td>
-									<td><?= $row['USER_LOGIN_STATUS'] ?></a></td>
-								</tr>
-                                                            <?php } ?>
-							</tbody>
-						</table>
+						
+                                            </table>
 					</div> <!-- end content-module-main -->
 				</div> <!-- end content-module -->
 			</div>
