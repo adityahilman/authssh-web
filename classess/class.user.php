@@ -68,4 +68,12 @@ class USERS {
             return $insert;
         }
     }
+    
+    public function getUsersLinux() {
+        $sql_linux = "SELECT * FROM USER";
+        $c = new ConnectionDB();
+        $c->openConnection();
+        $query_linux = mysql_query($sql_linux) or die(mysql_error());
+        return $query_linux;
+    }
 }
