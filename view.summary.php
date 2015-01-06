@@ -82,10 +82,17 @@ $list = $data->getViewLog();
 					</div> <!-- end content-module-heading -->
 					
 					<div class="content-module-main">
+                                            Filter by : 
+						<select id="dropdown-actions">
+                                                    <option value="0">- Filter -</option>
+                                                    <option value="username">Username</option>
+                                                    <option value="ipaddress">IP Address</option>
+                                                    <option value="date">Date</option>
+                                                    <option value="status">Status</option>
+						</select>
 						<table>
 							<thead>
 								<tr>
-									<th>ID</th>
                                                                         <th>Username</th>
 									<th>IP Address</th>
 									<th>Date</th>
@@ -103,7 +110,6 @@ $list = $data->getViewLog();
 							<tbody>
                                                             <?php while($row= mysql_fetch_array($list)) { ?>
 								<tr>
-                                                                        <td><?= $row['USER_ID'] ?></td>
 									<td><?= $row['USER_NAME'] ?></td>
                                                                         <td><?= $row['USER_IP'] ?></td>
 									<td><?= $row['USER_LASTLOGIN'] ?></td>
@@ -113,7 +119,7 @@ $list = $data->getViewLog();
 							</tbody>
 							
 						</table>
-					
+					<a href="#" class="button round blue image-right ic-download text-upper">Download</a>
 					</div> <!-- end content-module-main -->
 				
 				</div> <!-- end content-module -->
