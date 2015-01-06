@@ -115,7 +115,24 @@ $list = $data->getUsersLinux();
                                                 </div>
                                             </div>
                                             <div class="half-size-column fr">
-                                                Search User
+                                                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+							<label for="textarea">Search User</label>
+                                                        <input type="text" id="simple-input" name="username" class="round default-width-input" />
+                                                        <input type="submit" name="btnSubmit" id="btnSubmit" class="button round blue image-right ic-search text-upper" value="Detail"/>
+                                                </form>
+                                                <br>
+                                                <?php 
+                                                if(isset($_POST['btnSubmit']))
+                                                {
+                                                    $username = $_POST['username'];
+                                                    $userid = shell_exec("id $username");
+                                                    if (empty($userid)) {
+                                                        echo "USER NOT FOUND";
+                                                    } else {
+                                                        echo "$userid";
+                                                    }
+                                                }
+                                                ?>
                                             </div>
                                             
 					</div> <!-- end content-module-main -->
