@@ -8,61 +8,71 @@
 
 include "jpgraph/src/jpgraph.php";
 include "jpgraph/src/jpgraph_bar.php";
-//include "jpgraph/src/jpgraph_line.php";
+include "jpgraph/src/jpgraph_line.php";
 
 include "classess/class.viewlog.php";
 
 $data = new ViewLog();
-$list = $data->getUserChartSummaryLog();
 
 $listSuccess = $data->getUserSuccessChartSummaryLog();
+$listFailed = $data->getUserFailedChartSummaryLog();
 
 $dataSuccess = array();
-$dataStatus = array();
-$dataTotal = array();
+$dataSuccessTotal = array();
 
-while ($data = mysql_fetch_array($list))
-{
-    //array_unshift($dataUser, $data['USER_NAME']);
-    array_unshift($dataStatus, $data['USER_LOGIN_STATUS']);
-    array_unshift($dataTotal, $data['COUNT(*)']);
-}
+$dataFailed = array();
+$dataFailedTotal = array();
+
+
+$xLabel = array("Login Summary");
 
 while ($data = mysql_fetch_array($listSuccess))
 {
-    
+    array_unshift($dataSuccess, $data['USER_LOGIN_STATUS']);
+    array_unshift($dataSuccessTotal, $data['COUNT(*)']);
 }
 
-$graph = new Graph(600,400,"auto");
+while ($data = mysql_fetch_array($listFailed))
+{
+    array_unshift($dataFailed, $data['USER_LOGIN_STATUS']);
+    array_unshift($dataFailedTotal, $data['COUNT(*)']);
+}
+
+$graph = new Graph(400,400,"auto");
 $graph->SetScale("textlin");
 
-$graph->legend->Pos(0.5,0.98,"center","bottom");
-$graph->img->SetMargin(50,100,20,100);
+$graph->legend->Pos(0.82,0.5,"center","bottom");
+$graph->img->SetMargin(50,150,20,100);
 $graph->title->Set("Linux Login");
 $graph->SetShadow();
 
-$graph->xaxis->title->Set("Login Status");
+//$graph->xaxis->title->Set("Login Status");
 $graph->xaxis->SetLabelAlign("center");
-$graph->xaxis->SetTickLabels($dataStatus);
+$graph->xaxis->SetTickLabels($xLabel);
 
 $graph->yaxis->title->Set("Login Count");
 $graph->title->SetFont(FF_FONT1, FS_BOLD);
 
-$bplot1 = new BarPlot($dataTotal);
-$bplot1->SetFillColor("blue");
+$bplot1 = new BarPlot($dataSuccessTotal);
+//$bplot1->SetFillColor("blue");
 $bplot1->value->show();
-//$bplot1->SetLegend("Success");
+$bplot1->SetLegend("Success");
 
-/*
-$bplot2 = new BarPlot($dataTotal);
-$bplot2->SetFillColor("red");
+
+$bplot2 = new BarPlot($dataFailedTotal);
+//$bplot2->SetFillColor('#ff0000');
 $bplot2->value->show();
 $bplot2->SetLegend("Failed");
-*/
-$gbplot = new GroupBarPlot(array($bplot1));
-$gbplot->SetWidth(0.4);
+
+$gbplot = new GroupBarPlot(array($bplot1, $bplot2));
+
+$gbplot->SetWidth(0.3);
+
 
 $graph->Add($gbplot);
+//$gbplot->SetColor("red");
+
+$gbplot->SetFillColor('#ff0000');
 
 $graph->Stroke();
 ?>
