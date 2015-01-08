@@ -32,6 +32,7 @@ include_once "jpgraph/src/jpgraph_line.php";
 include 'classess/class.viewlog.php';
 $data = new ViewLog();
 $list = $data->getViewLastTenLog();
+$topten = $data->getViewTopTenLog();
 ?>
 	<!-- TOP BAR -->
 	<div id="top-bar">
@@ -92,7 +93,31 @@ $list = $data->getViewLastTenLog();
                                             </div>
                                             <div class="half-size-column fr">
                                                 <div class="content-module-main">
-                                                    <h1>Login Summary</h1>
+                                                    Top 10 Traffic
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th height="40px">Username</th>
+                                                                <th height="40px">IP Address</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tfoot>
+                                                            <!-- Paging -->
+                                                        </tfoot>
+                                                        <tbody>
+                                                            <?php
+                                                            $topten_view = $data->getViewTopTenLog();
+                                                            while ($topten_row = mysql_fetch_array($topten_view)) {
+                                                                ?>
+                                                                <tr>
+                                                                    <td height="25px"><?= $topten_row['USER_NAME'] ?></td>
+                                                                    <td height="25px"><?= $topten_row['USER_IP'] ?>  (<?= $topten_row['COUNT(*)'] ?> Hit)</td>
+                                                                    
+                                                                </tr>
+                                                            <?php } ?>
+                                                        </tbody>
+                                                    </table>
+                                                    Login Summary
                                                 <table>
                                                     <thead>
                                                         <tr>
@@ -115,7 +140,6 @@ $list = $data->getViewLastTenLog();
                                                         <?php } ?>
                                                     </tbody>
                                                 </table>
-                                                    <br>
                                                     <table>
                                                         <thead>
                                                             <tr>

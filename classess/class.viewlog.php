@@ -44,7 +44,14 @@ class ViewLog {
         $query=mysql_query($sql_view) or die (mysql_error());
         return $query;
     }
-    
+     public function getViewTopTenLog() {
+        $sql_topten = "SELECT USER_NAME, USER_IP, COUNT(*) FROM USER_LOG  where USER_LOGIN_STATUS = 'success' group by USER_NAME DESC LIMIT 10";
+        $c = new ConnectionDB();
+        $c->openConnection();
+        $query_topten = mysql_query($sql_topten) or die(mysql_error());
+        return $query_topten;
+    }
+
     public function getUserSummaryLog() {
         $sql_user="SELECT USER_NAME, COUNT(*) FROM USER_LOG GROUP BY USER_NAME";
         $c=new ConnectionDB();
