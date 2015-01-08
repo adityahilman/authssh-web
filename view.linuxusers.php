@@ -14,14 +14,14 @@ if (!isset($_SESSION['USERNAME_ADMIN']))
 	<title>SSH Two Factor Authentication - Admin Login</title>
 	
 	<!-- Stylesheets -->
-	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet'>
+	<!-- <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet'> -->
 	<link rel="stylesheet" href="css/style.css">
 	
 	<!-- Optimize for mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	
 	<!-- jQuery & JS files -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
 	<script src="js/script.js"></script>  
 </head>
 <body>
@@ -80,14 +80,13 @@ $list = $data->getUsersLinux();
 			<div class="side-content fr">
 				<div class="content-module">
 					<div class="content-module-heading cf">
-						<h3 class="fl">Login Users Linux Summary</h3>
+						<h3 class="fl">Registered Linux Users</h3>
 						<span class="fr expand-collapse-text">Click to collapse</span>
-						<span class="fr expand-collapse-text initial-expand">Click to expand</span>
 					</div> <!-- end content-module-heading -->
 					<div class="content-module-main cf">
                                             <div class="half-size-column fl">
                                                 <div class="content-module-main">
-                                                    <h1>Linux User</h1>
+                                                    <label for="simple-input">Linux User</label>
                                                     <table>
                                                         <thead>
                                                             <tr>
@@ -115,6 +114,38 @@ $list = $data->getUsersLinux();
                                                 </div>
                                             </div>
                                             <div class="half-size-column fr">
+                                                <form method="POST" action="#">
+                                                <label for="simple-input">Register Linux User</label>
+                                                <input type="text" id="simple-input" name="userlinux" class="round default-width-input" />
+                                                <input type="submit" name="btnRegister" id="btnSubmit" class="button round blue image-right ic-add text-upper" value="Register"/>
+                                                </form>
+                                                <?php 
+                                                if(isset($_POST['btnRegister']))
+                                                {
+                                                    $userlinux = $_POST['userlinux'];
+                                                    if(empty($userlinux)) {
+                                                ?> 
+                                                <div class="error-box round">Please input the Username.</div>
+                                                <?php
+                                                        //echo "Please input Username";
+                                                    }
+                                                    else {
+                                                        echo "<label for='simple-input'>Username $userlinux</label>";
+                                                    }
+                                                }
+                                                ?>
+                                            </div>
+                                            
+					</div> <!-- end content-module-main -->
+				</div> <!-- end content-module -->
+				<div class="content-module">
+					<div class="content-module-heading cf">
+						<h3 class="fl">Detail Linux Users</h3>
+						<span class="fr expand-collapse-text">Click to collapse</span>
+					</div> <!-- end content-module-heading -->					
+					<!--<div class="content-module-main cf"> -->
+                                        <div class="content-module-main">
+                                             <div class="half-size-column fl">
                                                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 							<label for="textarea">Search User</label>
                                                         <input type="text" id="simple-input" name="username" class="round default-width-input" />
@@ -134,17 +165,6 @@ $list = $data->getUsersLinux();
                                                 }
                                                 ?>
                                             </div>
-                                            
-					</div> <!-- end content-module-main -->
-				</div> <!-- end content-module -->
-				<div class="content-module">
-					<div class="content-module-heading cf">
-						<h3 class="fl">Latest Linux Users Login Monitoring</h3>
-						<span class="fr expand-collapse-text">Click to collapse</span>
-						<span class="fr expand-collapse-text initial-expand">Click to expand</span>
-					</div> <!-- end content-module-heading -->					
-					<!--<div class="content-module-main cf"> -->
-                                        <div class="content-module-main">
                                             <table>
 						
                                             </table>

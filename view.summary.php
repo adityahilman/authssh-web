@@ -31,7 +31,6 @@ $list = $data->getViewLog();
 	
 				<li class="v-sep"><a href="#" class="round button dark menu-user image-left">Logged in as <strong>admin</strong></a>
 					<ul>
-						<li><a href="admin_profile.php">My Profile</a></li>
 						<li><a href="#">Change Password</a></li>
 					</ul> 
 				</li>
@@ -68,7 +67,7 @@ $list = $data->getViewLog();
 				<h3>Menu</h3>
 				<ul>
                                         <li><a href="dashboard.php">Dashboard</a></li>
-					<li><a href="#">View Linux Users</a></li>
+					<li><a href="view.linuxusers.php">View Linux Users</a></li>
 					<li><a href="#">View Web Portal Users</a></li>
 					<li><a href="#">Report</a></li>
 				</ul>	
@@ -82,47 +81,7 @@ $list = $data->getViewLog();
 					</div> <!-- end content-module-heading -->
 					
 					<div class="content-module-main">
-                                            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                                            Filter by : 
-						<select id="dropdown-actions">
-                                                    <option value="0">- Filter -</option>
-                                                    <option value="username2">Username</option>
-                                                    <option value="ipaddress">IP Address</option>
-                                                    <option value="date">Date</option>
-                                                    <option value="status">Status</option>
-						</select>
-                                                <input type="text" id="simple-input" name="username" class="round default-width-input" />
-                                                <input type="submit" name="btnSearch" id="btnSubmit" class="button round blue image-right ic-search text-upper" value="Search"/>
-                                            </form>
-                                            <br>
-                                            <table>
-                                                <thead>
-                                                    <tr>
-                                                        <th height="40px" class="half-size-column fl">Username</th>
-                                                    </tr>
-                                                </thead>
-                                                <tfoot>
-                                                    <!-- Paging -->
-                                                </tfoot>
-                                                <tbody>
-                                            <?php
-                                            //include 'classess/class.user.php';
-                                            if (isset($_POST['btnSearch'])) {
-                                                $username = $_POST['username'];
-                                                $data = new ViewLog();
-                                                $result_search = $data->getSearchUsers();
-                                                while ($row = mysql_fetch_array($result_search))
-                                                {
-                                                    ?>
-                                                <tr>
-                                                    <td height="25px"><?= $row['USER_NAME'] ?></td>
-                                                </tr>
-                                            <?php
-                                                }
-                                            }
-                                            ?>
-                                                </tbody>
-                                            </table>
+                                            Content
 					</div> <!-- end content-module-main -->
 				
 				</div> <!-- end content-module -->
