@@ -66,9 +66,12 @@ $list = $data->getViewLog();
 			<div class="side-menu fl">
 				
 				<h3>Menu</h3>
-				<ul>
-                                        <li><a href="dashboard.php">Dashboard</a></li>
-					<li><a href="#">View Linux Users</a></li>
+                                <ul>
+                                    <li><a href="dashboard.php">Dashboard</a>       
+                                        </li>
+					<li><a href="#">View Linux Users</a>
+                                            <ul><li><a href="#">Test</a></li></ul>
+                                        </li>
 					<li><a href="#">View Web Portal Users</a></li>
 					<li><a href="#">Report</a></li>
 				</ul>	

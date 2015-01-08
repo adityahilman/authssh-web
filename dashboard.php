@@ -42,7 +42,6 @@ $list = $data->getViewLastTenLog();
 	
 				<li class="v-sep"><a href="#" class="round button dark menu-user image-left">Logged in as <strong><?php echo $_SESSION['USERNAME_ADMIN']; ?></strong></a>
 					<ul>
-						<li><a href="admin_profile.php">My Profile</a></li>
 						<li><a href="#">Change Password</a></li>
 					</ul> 
 				</li>

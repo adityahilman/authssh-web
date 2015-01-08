@@ -613,6 +613,7 @@ div.side-menu {
 			div.side-menu ul li a:hover {
 				background-color: #f8f9fa;
 			}
+                        
 
 div.side-content { width: 83%; /* 100% - 15% for the side menu - 2% for the left margin */ }
 
