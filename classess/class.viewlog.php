@@ -81,11 +81,20 @@ class ViewLog {
     
     public function getUserSuccessChartSummaryLog() {
         //$sql_chart="SELECT USER_NAME, USER_LOGIN_STATUS, COUNT(*) FROM USER_LOG GROUP BY USER_NAME, USER_LOGIN_STATUS";
-        $sql_chart="SELECT USER_LOGIN_STATUS, COUNT(*) FROM USER_LOG WHERE USER_LOGIN_STATUS = 'Success' GROUP BY USER_LOGIN_STATUS";
+        $sql_success="SELECT USER_LOGIN_STATUS, COUNT(*) FROM USER_LOG WHERE USER_LOGIN_STATUS = 'Success' GROUP BY USER_LOGIN_STATUS";
         $c=new ConnectionDB();
         $c->openConnection();
-        $query_chart=mysql_query($sql_chart) or die (mysql_error());
-        return $query_chart;
+        $query_success=mysql_query($sql_success) or die (mysql_error());
+        return $query_success;
+    }
+    
+    public function getUserFailedChartSummaryLog() {
+        //$sql_chart="SELECT USER_NAME, USER_LOGIN_STATUS, COUNT(*) FROM USER_LOG GROUP BY USER_NAME, USER_LOGIN_STATUS";
+        $sql_failed="SELECT USER_LOGIN_STATUS, COUNT(*) FROM USER_LOG WHERE USER_LOGIN_STATUS = 'Failed' GROUP BY USER_LOGIN_STATUS";
+        $c=new ConnectionDB();
+        $c->openConnection();
+        $query_failed=mysql_query($sql_failed) or die (mysql_error());
+        return $query_failed;
     }
     
 }
