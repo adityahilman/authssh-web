@@ -52,17 +52,7 @@ class ViewLog {
         $query=mysql_query($sql_user) or die (mysql_error());
         return $query;
     }
-    
-    public function getUserChartSummaryLog() {
-        //$sql_chart="SELECT USER_NAME, USER_LOGIN_STATUS, COUNT(*) FROM USER_LOG GROUP BY USER_NAME, USER_LOGIN_STATUS";
-        $sql_chart="SELECT USER_LOGIN_STATUS, COUNT(USER_LOGIN_STATUS) FROM USER_LOG GROUP BY USER_LOGIN_STATUS";
-        $c=new ConnectionDB();
-        $c->openConnection();
-        $query_chart=mysql_query($sql_chart) or die (mysql_error());
-        return $query_chart;
-    }
-    
-    
+      
     public function getIpSummaryLog() {
         $sql_ip="SELECT USER_IP, COUNT(*) FROM USER_LOG GROUP BY USER_IP";
         $c=new ConnectionDB();
@@ -71,11 +61,31 @@ class ViewLog {
         return $query;
     }
     
-     public function getSearchUsers() {
+    public function getSearchUsers() {
         $search_user = "SELECT * FROM USER_LOG WHERE USER_NAME = '".$this->getUsername()."' ";
         $c = new ConnectionDB();
         $c->openConnection();
         $query_search = mysql_query($search_user) or die (mysql_error());
         return $query_search;
     }
+    
+    // function untuk bar chart
+    public function getUserChartSummaryLog() {
+        //$sql_chart="SELECT USER_NAME, USER_LOGIN_STATUS, COUNT(*) FROM USER_LOG GROUP BY USER_NAME, USER_LOGIN_STATUS";
+        $sql_chart="SELECT USER_LOGIN_STATUS, COUNT(*) FROM USER_LOG GROUP BY USER_LOGIN_STATUS";
+        $c=new ConnectionDB();
+        $c->openConnection();
+        $query_chart=mysql_query($sql_chart) or die (mysql_error());
+        return $query_chart;
+    }
+    
+    public function getUserSuccessChartSummaryLog() {
+        //$sql_chart="SELECT USER_NAME, USER_LOGIN_STATUS, COUNT(*) FROM USER_LOG GROUP BY USER_NAME, USER_LOGIN_STATUS";
+        $sql_chart="SELECT USER_LOGIN_STATUS, COUNT(*) FROM USER_LOG WHERE USER_LOGIN_STATUS = 'Success' GROUP BY USER_LOGIN_STATUS";
+        $c=new ConnectionDB();
+        $c->openConnection();
+        $query_chart=mysql_query($sql_chart) or die (mysql_error());
+        return $query_chart;
+    }
+    
 }
