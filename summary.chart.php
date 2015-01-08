@@ -55,24 +55,25 @@ $graph->title->SetFont(FF_FONT1, FS_BOLD);
 
 $bplot1 = new BarPlot($dataSuccessTotal);
 //$bplot1->SetFillColor("blue");
-$bplot1->value->show();
+$bplot1->value->Show();
 $bplot1->SetLegend("Success");
+$bplot1->SetValuePos('center');
+$bplot1->value->SetFormat('%d');
+
 
 
 $bplot2 = new BarPlot($dataFailedTotal);
 //$bplot2->SetFillColor('#ff0000');
-$bplot2->value->show();
+$bplot2->value->Show();
 $bplot2->SetLegend("Failed");
 
 $gbplot = new GroupBarPlot(array($bplot1, $bplot2));
 
-$gbplot->SetWidth(0.3);
+$gbplot->SetWidth(0.5);
 
 
 $graph->Add($gbplot);
-//$gbplot->SetColor("red");
-
-$gbplot->SetFillColor('#ff0000');
+//$graph->yaxis->scale->SetGrace(5);
 
 $graph->Stroke();
 ?>

@@ -88,7 +88,7 @@ $list = $data->getViewLastTenLog();
 					</div> <!-- end content-module-heading -->
 					<div class="content-module-main cf">
                                             <div class="half-size-column fl">
-                                                <img src="chart.php">
+                                                <img src="summary.chart.php">
                                             </div>
                                             <div class="half-size-column fr">
                                                 <div class="content-module-main">
