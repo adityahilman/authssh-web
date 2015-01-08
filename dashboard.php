@@ -14,14 +14,14 @@ if (!isset($_SESSION['USERNAME_ADMIN']))
 	<title>SSH Two Factor Authentication - Admin Login</title>
 	
 	<!-- Stylesheets -->
-	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet'>
+	<!-- <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet'> -->
 	<link rel="stylesheet" href="css/style.css">
 	
 	<!-- Optimize for mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	
 	<!-- jQuery & JS files -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
 	<script src="js/script.js"></script>  
 </head>
 <body>
@@ -32,6 +32,7 @@ include_once "jpgraph/src/jpgraph_line.php";
 include 'classess/class.viewlog.php';
 $data = new ViewLog();
 $list = $data->getViewLastTenLog();
+$topten = $data->getViewTopTenLog();
 ?>
 	<!-- TOP BAR -->
 	<div id="top-bar">
@@ -88,11 +89,35 @@ $list = $data->getViewLastTenLog();
 					</div> <!-- end content-module-heading -->
 					<div class="content-module-main cf">
                                             <div class="half-size-column fl">
-                                                <img src="chart.php">
+                                                <img src="summary.chart.php">
                                             </div>
                                             <div class="half-size-column fr">
                                                 <div class="content-module-main">
-                                                    <h1>Login Summary</h1>
+                                                    Top 10 Traffic
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th height="40px">Username</th>
+                                                                <th height="40px">IP Address</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tfoot>
+                                                            <!-- Paging -->
+                                                        </tfoot>
+                                                        <tbody>
+                                                            <?php
+                                                            $topten_view = $data->getViewTopTenLog();
+                                                            while ($topten_row = mysql_fetch_array($topten_view)) {
+                                                                ?>
+                                                                <tr>
+                                                                    <td height="25px"><?= $topten_row['USER_NAME'] ?></td>
+                                                                    <td height="25px"><?= $topten_row['USER_IP'] ?>  (<?= $topten_row['COUNT(*)'] ?> Hit)</td>
+                                                                    
+                                                                </tr>
+                                                            <?php } ?>
+                                                        </tbody>
+                                                    </table>
+                                                    Login Summary
                                                 <table>
                                                     <thead>
                                                         <tr>
@@ -115,7 +140,6 @@ $list = $data->getViewLastTenLog();
                                                         <?php } ?>
                                                     </tbody>
                                                 </table>
-                                                    <br>
                                                     <table>
                                                         <thead>
                                                             <tr>
@@ -144,7 +168,7 @@ $list = $data->getViewLastTenLog();
 				</div> <!-- end content-module -->
 				<div class="content-module">
 					<div class="content-module-heading cf">
-						<h3 class="fl">Latest Linux Users Login Monitoring</h3>
+						<h3 class="fl">Last 10 Login Linux Users Login</h3>
 						<span class="fr expand-collapse-text">Click to collapse</span>
 						<span class="fr expand-collapse-text initial-expand">Click to expand</span>
 					</div> <!-- end content-module-heading -->					
