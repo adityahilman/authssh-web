@@ -8,8 +8,6 @@
 
 include "jpgraph/src/jpgraph.php";
 include "jpgraph/src/jpgraph_bar.php";
-include "jpgraph/src/jpgraph_line.php";
-
 include "classess/class.viewlog.php";
 
 $data = new ViewLog();
@@ -22,7 +20,6 @@ $dataSuccessTotal = array();
 
 $dataFailed = array();
 $dataFailedTotal = array();
-
 
 $xLabel = array("Login Summary");
 
@@ -58,9 +55,6 @@ $bplot1 = new BarPlot($dataSuccessTotal);
 $bplot1->value->Show();
 $bplot1->SetLegend("Success");
 $bplot1->SetValuePos('center');
-$bplot1->value->SetFormat('%d');
-
-
 
 $bplot2 = new BarPlot($dataFailedTotal);
 //$bplot2->SetFillColor('#ff0000');
@@ -70,7 +64,6 @@ $bplot2->SetLegend("Failed");
 $gbplot = new GroupBarPlot(array($bplot1, $bplot2));
 
 $gbplot->SetWidth(0.5);
-
 
 $graph->Add($gbplot);
 //$graph->yaxis->scale->SetGrace(5);

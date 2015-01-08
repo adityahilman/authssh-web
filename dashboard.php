@@ -14,14 +14,14 @@ if (!isset($_SESSION['USERNAME_ADMIN']))
 	<title>SSH Two Factor Authentication - Admin Login</title>
 	
 	<!-- Stylesheets -->
-	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet'>
+	<!-- <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet'> -->
 	<link rel="stylesheet" href="css/style.css">
 	
 	<!-- Optimize for mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	
 	<!-- jQuery & JS files -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
 	<script src="js/script.js"></script>  
 </head>
 <body>
@@ -144,7 +144,7 @@ $list = $data->getViewLastTenLog();
 				</div> <!-- end content-module -->
 				<div class="content-module">
 					<div class="content-module-heading cf">
-						<h3 class="fl">Latest Linux Users Login Monitoring</h3>
+						<h3 class="fl">Last 10 Login Linux Users Login</h3>
 						<span class="fr expand-collapse-text">Click to collapse</span>
 						<span class="fr expand-collapse-text initial-expand">Click to expand</span>
 					</div> <!-- end content-module-heading -->					
