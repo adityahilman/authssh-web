@@ -88,15 +88,15 @@ $list = $data->getUsersLinux();
                                                         <table>
                                                             <tr>
                                                                 <td>Current Password</td>
-                                                                <td><input type="text" id="simple-input" name="currentPass" class="round default-width-input"/></td>
+                                                                <td><input type="password" id="simple-input" name="currentPass" class="round default-width-input"/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>New Password</td>
-                                                                <td><input type="text" id="simple-input" name="newPass" class="round default-width-input"/></td>
+                                                                <td><input type="password" id="simple-input" name="newPass" class="round default-width-input"/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Retype Password</td>
-                                                                <td><input type="text" id="simple-input" name="newPass2" class="round default-width-input"/></td>
+                                                                <td><input type="password" id="simple-input" name="newPass2" class="round default-width-input"/></td>
                                                             </tr>
                                                         </table>
                                                         <input type="submit" name="btnUpdate" id="btnSubmit" class="button round blue image-right ic-right-arrow text-upper" value="Update"/>
