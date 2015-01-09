@@ -107,6 +107,8 @@ $list = $data->getUsersLinux();
                                                         $currentPassword = $_POST['currentPass'];
                                                         $newPassword = $_POST['newPass'];
                                                         $newPassword2 = $_POST['newPass2'];
+                                                        $username =  $_SESSION['USERNAME_ADMIN']; 
+                                                        
                                                         if (empty($currentPassword)) {
                                                             ?> 
                                                             <div class="error-box round">Current Password is Wrong.</div>
@@ -124,9 +126,15 @@ $list = $data->getUsersLinux();
                                                            <?php
                                                         }
                                                         else {
+                                                            $update_pass = new USERS();
+                                                            $update_pass->setUsername($username);
+                                                            $update_pass->setPassword($newPassword);
+                                                            $result_update = $update_pass->getUpdatePassword();
+                                                            if ($result_update) {
                                                             ?>
                                                            <div class="confirmation-box round">Password has been updated.</div>
                                                            <?php
+                                                            }
                                                         }
                                                     }
                                                     ?>
