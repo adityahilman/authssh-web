@@ -43,7 +43,7 @@ $topten = $data->getViewTopTenLog();
 	
 				<li class="v-sep"><a href="#" class="round button dark menu-user image-left">Logged in as <strong><?php echo $_SESSION['USERNAME_ADMIN']; ?></strong></a>
 					<ul>
-						<li><a href="#">Change Password</a></li>
+                                            <li><a href="changepassword.php">Change Password</a></li>
 					</ul> 
 				</li>
 				<li><a href="logout.php" class="round button dark menu-logoff image-left">Log out</a></li>		
@@ -84,8 +84,6 @@ $topten = $data->getViewTopTenLog();
 				<div class="content-module">
 					<div class="content-module-heading cf">
 						<h3 class="fl">Login Users Linux Summary</h3>
-						<span class="fr expand-collapse-text">Click to collapse</span>
-						<span class="fr expand-collapse-text initial-expand">Click to expand</span>
 					</div> <!-- end content-module-heading -->
 					<div class="content-module-main cf">
                                             <div class="half-size-column fl">
@@ -169,8 +167,6 @@ $topten = $data->getViewTopTenLog();
 				<div class="content-module">
 					<div class="content-module-heading cf">
 						<h3 class="fl">Last 10 Login Linux Users Login</h3>
-						<span class="fr expand-collapse-text">Click to collapse</span>
-						<span class="fr expand-collapse-text initial-expand">Click to expand</span>
 					</div> <!-- end content-module-heading -->					
 					<!--<div class="content-module-main cf"> -->
                                         <div class="content-module-main">

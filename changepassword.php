@@ -79,43 +79,54 @@ $list = $data->getUsersLinux();
 			<div class="side-content fr">
 				<div class="content-module">
 					<div class="content-module-heading cf">
-						<h3 class="fl">Registered Linux Users</h3>
-						<span class="fr expand-collapse-text">Click to collapse</span>
+						<h3 class="fl">Update Password</h3>
 					</div> <!-- end content-module-heading -->
 					<div class="content-module-main cf">
                                             <div class="half-size-column fl">
                                                 <div class="content-module-main">
-                                                    <form method="POST" action="#">
-                                                        <label for="simple-input">Update Password</label>
+                                                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                                         <table>
                                                             <tr>
                                                                 <td>Current Password</td>
-                                                                <td><input type="text" id="simple-input" name="userlinux" class="round default-width-input"/></td>
+                                                                <td><input type="text" id="simple-input" name="currentPass" class="round default-width-input"/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>New Password</td>
-                                                                <td><input type="text" id="simple-input" name="userlinux" class="round default-width-input"/></td>
+                                                                <td><input type="text" id="simple-input" name="newPass" class="round default-width-input"/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Retype Password</td>
-                                                                <td><input type="text" id="simple-input" name="userlinux" class="round default-width-input"/></td>
+                                                                <td><input type="text" id="simple-input" name="newPass2" class="round default-width-input"/></td>
                                                             </tr>
                                                         </table>
-                                                        
-                                                        
-                                                        <input type="submit" name="btnRegister" id="btnSubmit" class="button round blue image-right ic-right-arrow text-upper" value="Update"/>
+                                                        <input type="submit" name="btnUpdate" id="btnSubmit" class="button round blue image-right ic-right-arrow text-upper" value="Update"/>
                                                     </form>
-
-                                                    <?php
-                                                    if (isset($_POST['btnRegister'])) {
-                                                        $userlinux = $_POST['userlinux'];
-                                                        if (empty($userlinux)) {
+                                                    <br>
+                                                    <?php                                                 
+                                                    if (isset($_POST['btnUpdate'])) {
+                                                        $currentPassword = $_POST['currentPass'];
+                                                        $newPassword = $_POST['newPass'];
+                                                        $newPassword2 = $_POST['newPass2'];
+                                                        if (empty($currentPassword)) {
                                                             ?> 
-                                                            <div class="error-box round">Please input the Username.</div>
+                                                            <div class="error-box round">Current Password is Wrong.</div>
                                                             <?php
                                                             //echo "Please input Username";
-                                                        } else {
-                                                            echo "<label for='simple-input'>Username $userlinux</label>";
+                                                        } 
+                                                        elseif (empty ($newPassword)) {
+                                                           ?>
+                                                           <div class="error-box round">Please type New Password.</div>
+                                                           <?php
+                                                        }
+                                                        elseif (empty ($newPassword2) || $newPassword2 != $newPassword) {
+                                                           ?>
+                                                           <div class="error-box round">New Password is not same. Please type New Password correctly.</div>
+                                                           <?php
+                                                        }
+                                                        else {
+                                                            ?>
+                                                           <div class="confirmation-box round">Password has been updated.</div>
+                                                           <?php
                                                         }
                                                     }
                                                     ?>

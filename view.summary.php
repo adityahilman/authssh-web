@@ -31,7 +31,7 @@ $list = $data->getViewLog();
 	
 				<li class="v-sep"><a href="#" class="round button dark menu-user image-left">Logged in as <strong>admin</strong></a>
 					<ul>
-						<li><a href="#">Change Password</a></li>
+                                            <li><a href="changepassword.php">Change Password</a></li>
 					</ul> 
 				</li>
 				<li><a href="logout.php" class="round button dark menu-logoff image-left">Log out</a></li>		
@@ -76,8 +76,6 @@ $list = $data->getViewLog();
 				<div class="content-module">
 					<div class="content-module-heading cf">
 						<h3 class="fl">Summary Users Login</h3>
-						<span class="fr expand-collapse-text">Click to collapse</span>
-						<span class="fr expand-collapse-text initial-expand">Click to expand</span>
 					</div> <!-- end content-module-heading -->
 					
 					<div class="content-module-main">
@@ -90,9 +88,7 @@ $list = $data->getViewLog();
 				
 					<div class="content-module-heading cf">
 					
-						<h3 class="fl">Form Elements</h3>
-						<span class="fr expand-collapse-text">Click to collapse</span>
-						<span class="fr expand-collapse-text initial-expand">Click to expand</span>
+						<h3 class="fl">Log Linux Users Login</h3>
 					
 					</div> <!-- end content-module-heading -->
 					
