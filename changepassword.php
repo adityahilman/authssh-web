@@ -2,7 +2,7 @@
 session_start(); 
 if (!isset($_SESSION['USERNAME_ADMIN']))
 {
-    header("location:error.html");
+    header("location:index.html");
 }
 ?>
 
