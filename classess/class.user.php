@@ -71,7 +71,7 @@ class USERS {
     
     public function getUpdatePassword() {
         $insert = false;
-        $sql_update_pass = "UPDATE USER_ADMIN SET PASSWORD_ADMIN '" . $this->getPassword() . "' where USERNAME_ADMIN = '" . $this->getUsername() . "' ";
+        $sql_update_pass = "UPDATE USER_ADMIN SET PASSWORD_ADMIN = '".$this->getPassword()."' WHERE USERNAME_ADMIN = '".$this->getUsername()."' ";
         $c=new ConnectionDB();
         $c->openConnection();
         $query_update_pass = mysql_query($sql_update_pass) or die (mysql_error());
