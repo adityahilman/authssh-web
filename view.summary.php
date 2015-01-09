@@ -1,3 +1,10 @@
+<?php 
+session_start(); 
+if (!isset($_SESSION['USERNAME_ADMIN']))
+{
+    header("location:index.html");
+}
+?>
 <!DOCTYPE html>
 
 <html lang="en">
