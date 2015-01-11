@@ -4,6 +4,12 @@ if (!isset($_SESSION['USERNAME_ADMIN']))
 {
     header("location:index.html");
 }
+if ($_SESSION['LEVEL_ADMIN'] != 'superuser') {
+    ?>
+    <script>alert("Access Denied!");document.location.href="dashboard.php";</script>
+    <?php
+    //header("location:dashboard.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -69,12 +75,9 @@ $list = $data->getUsersLinux();
 			<div class="side-menu fl">
 				
 				<h3>Menu</h3>
-				<ul>
-                                        <li><a href="dashboard.php">Dashboard</a></li>
-					<li><a href="#">View Linux Users</a></li>
-					<li><a href="#">View Web Portal Users</a></li>
-                                        <li><a href="view.summary.php">Report</a></li>
-				</ul>	
+				<?php
+                                include 'menu.php'
+                                ?>
 			</div> <!-- end side-menu -->			
 			<div class="side-content fr">
 				<div class="content-module">
