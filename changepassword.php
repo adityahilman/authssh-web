@@ -71,7 +71,7 @@ $list = $data->getUsersLinux();
 				<h3>Menu</h3>
 				<ul>
                                         <li><a href="dashboard.php">Dashboard</a></li>
-					<li><a href="#">View Linux Users</a></li>
+                                        <li><a href="view.linuxusers.php">View Linux Users</a></li>
 					<li><a href="#">View Web Portal Users</a></li>
                                         <li><a href="view.summary.php">Report</a></li>
 				</ul>	
@@ -87,16 +87,12 @@ $list = $data->getUsersLinux();
                                                     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                                         <table>
                                                             <tr>
-                                                                <td>Current Password</td>
-                                                                <td><input type="password" id="simple-input" name="currentPass" class="round default-width-input"/></td>
-                                                            </tr>
-                                                            <tr>
                                                                 <td>New Password</td>
-                                                                <td><input type="password" id="simple-input" name="newPass" class="round default-width-input"/></td>
+                                                                <td><input type="text" id="simple-input" name="newPass" class="round default-width-input"/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Retype Password</td>
-                                                                <td><input type="password" id="simple-input" name="newPass2" class="round default-width-input"/></td>
+                                                                <td><input type="text" id="simple-input" name="newPass2" class="round default-width-input"/></td>
                                                             </tr>
                                                         </table>
                                                         <input type="submit" name="btnUpdate" id="btnSubmit" class="button round blue image-right ic-right-arrow text-upper" value="Update"/>
@@ -104,25 +100,25 @@ $list = $data->getUsersLinux();
                                                     <br>
                                                     <?php                                                 
                                                     if (isset($_POST['btnUpdate'])) {
-                                                        $currentPassword = $_POST['currentPass'];
+                                                        //$currentPassword = $_POST['currentPass'];
                                                         $newPassword = $_POST['newPass'];
                                                         $newPassword2 = $_POST['newPass2'];
                                                         $username =  $_SESSION['USERNAME_ADMIN']; 
-                                                        
+                                                        /*
                                                         if (empty($currentPassword)) {
                                                             ?> 
                                                             <div class="error-box round">Current Password is Wrong.</div>
                                                             <?php
                                                             //echo "Please input Username";
-                                                        } 
-                                                        elseif (empty ($newPassword)) {
+                                                        } */
+                                                        if (empty ($newPassword)) {
                                                            ?>
                                                            <div class="error-box round">Please type New Password.</div>
                                                            <?php
                                                         }
                                                         elseif (empty ($newPassword2) || $newPassword2 != $newPassword) {
                                                            ?>
-                                                           <div class="error-box round">New Password is not same. Please type New Password correctly.</div>
+                                                           <div class="error-box round">New Password is not same.</div>
                                                            <?php
                                                         }
                                                         else {
