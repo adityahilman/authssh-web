@@ -70,14 +70,8 @@ $list = $data->getViewLog();
 		<div class="page-full-width cf">
 
 			<div class="side-menu fl">
-				
 				<h3>Menu</h3>
-				<ul>
-                                        <li><a href="dashboard.php">Dashboard</a></li>
-					<li><a href="view.linuxusers.php">View Linux Users</a></li>
-					<li><a href="#">View Web Portal Users</a></li>
-					<li><a href="#">Report</a></li>
-				</ul>	
+				<?php include 'menu.php' ?>
 			</div> <!-- end side-menu -->			
 			<div class="side-content fr">
 				<div class="content-module">
