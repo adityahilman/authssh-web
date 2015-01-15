@@ -145,7 +145,7 @@ $topten = $data->getViewTopTenLog();
                                                         </tfoot>
                                                         <tbody>
                                                             <?php
-                                                            $summary_ip = $data->getIpSummaryLog();
+                                                            $summary_ip = $data->getTopTenIpSummaryLog();
                                                             while ($row_ip = mysql_fetch_array($summary_ip)) {
                                                                 ?>
                                                                 <tr>
