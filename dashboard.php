@@ -103,16 +103,22 @@ $topten = $data->getViewTopTenLog();
                                                             </tr>
                                                              <tr>
                                                                 <td height="25px">Kernel Version</td>
-                                                                <td height="25px"><?php $uname_r = shell_exec("uname -r"); echo "$uname_r"; ?> </td>
+                                                                <td height="25px"><?php $uname_r = shell_exec("uname -r ; uname -v"); echo "$uname_r"; ?> </td>
                                                             </tr>
                                                             <tr>
                                                                 <td height="25px">Hostname</td>
                                                                 <td height="25px"><?php $hostname = shell_exec("hostname"); echo "$hostname"; ?> </td>
                                                             </tr>
-                                                           
+                                                            <tr>
+                                                                <td height="25px">IP Address</td>
+                                                                <td height="25px"><?php $ip_addr = shell_exec("ifconfig | grep 'inet addr' | cut -d: -f2 | awk '{ print $1 }'"); echo "$ip_addr"; ?> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td height="25px">Uptime</td>
+                                                                <td height="25px"><pre><?php $uptime = shell_exec("uptime -p"); echo "$uptime"; ?></pre></td>
+                                                            </tr>
                                                         </tbody>
-                                                    </table>
-                                                   
+                                                    </table>                                                   
                                                 </div>
                                             </div>
 					</div> <!-- end content-module-main -->
