@@ -81,10 +81,10 @@ $topten = $data->getViewTopTenLog();
 						<h3 class="fl">Login Users Linux Summary</h3>
 					</div> <!-- end content-module-heading -->
 					<div class="content-module-main cf">
-                                            <div class="half-size-column fl">
+                                            <div class="half-size-column fr">
                                                 <img src="summary.chart.php">
                                             </div>
-                                            <div class="half-size-column fr">
+                                            <div class="half-size-column fl">
                                                 <div class="content-module-main">
                                                     Server Information
                                                     <table>
@@ -94,8 +94,16 @@ $topten = $data->getViewTopTenLog();
                                                         </tfoot>
                                                         <tbody>
                                                             <tr>
-                                                                <td height="25px">Operating System</td>
+                                                                <td height="25px">OS</td>
                                                                 <td height="25px"><?php $os = shell_exec("uname"); echo "$os"; ?> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td height="25px">OS Architecture</td>
+                                                                <td height="25px"><?php $uname_p = shell_exec("uname -p"); echo "$uname_p"; ?> </td>
+                                                            </tr>
+                                                             <tr>
+                                                                <td height="25px">Kernel Version</td>
+                                                                <td height="25px"><?php $uname_r = shell_exec("uname -r"); echo "$uname_r"; ?> </td>
                                                             </tr>
                                                             <tr>
                                                                 <td height="25px">Hostname</td>
