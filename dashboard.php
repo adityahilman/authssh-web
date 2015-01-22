@@ -86,28 +86,22 @@ $topten = $data->getViewTopTenLog();
                                             </div>
                                             <div class="half-size-column fr">
                                                 <div class="content-module-main">
-                                                    Top 10 Traffic
+                                                    Server Information
                                                     <table>
-                                                        <thead>
-                                                            <tr>
-                                                                <th height="40px">Username</th>
-                                                                <th height="40px">IP Address</th>
-                                                            </tr>
-                                                        </thead>
+                                                        
                                                         <tfoot>
                                                             <!-- Paging -->
                                                         </tfoot>
                                                         <tbody>
-                                                            <?php
-                                                            $topten_view = $data->getViewTopTenLog();
-                                                            while ($topten_row = mysql_fetch_array($topten_view)) {
-                                                                ?>
-                                                                <tr>
-                                                                    <td height="25px"><?= $topten_row['USER_NAME'] ?></td>
-                                                                    <td height="25px"><?= $topten_row['USER_IP'] ?>  (<?= $topten_row['COUNT(*)'] ?> Hit)</td>
-                                                                    
-                                                                </tr>
-                                                            <?php } ?>
+                                                            <tr>
+                                                                <td height="25px">Operating System</td>
+                                                                <td height="25px"><?php $os = shell_exec("uname"); echo "$os"; ?> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td height="25px">Hostname</td>
+                                                                <td height="25px"><?php $hostname = shell_exec("hostname"); echo "$hostname"; ?> </td>
+                                                            </tr>
+                                                           
                                                         </tbody>
                                                     </table>
                                                    
