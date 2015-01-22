@@ -110,29 +110,71 @@ $topten = $data->getViewTopTenLog();
                                                             <?php } ?>
                                                         </tbody>
                                                     </table>
-                                                    Login Summary
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th height="40px">Username</th>
-                                                            <th>Hit</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <!-- Paging -->
-                                                    </tfoot>
-                                                    <tbody>
-                                                        <?php 
-                                                        $summary = $data->getUserSummaryLog();
-                                                        while ($row = mysql_fetch_array($summary)) { 
-                                                            ?>
+                                                   
+                                                </div>
+                                            </div>
+					</div> <!-- end content-module-main -->
+				</div> <!-- end content-module -->
+				<div class="content-module">
+					<div class="content-module-heading cf">
+						<h3 class="fl">Last 10 Login Linux Users Login</h3>
+					</div> <!-- end content-module-heading -->					
+					<!--<div class="content-module-main cf"> -->
+                                        <div class="content-module-main">
+                                             <div class="half-size-column fl">
+                                                 <div class="content-module-main">
+
+                                                Traffic Summary
+                                                    <table>
+                                                        <thead>
                                                             <tr>
-                                                                <td height="25px"><?= $row['USER_NAME'] ?></td>
-                                                                <td height="25px"><?= $row['COUNT(*)'] ?></td>
+                                                                <th height="40px">Username</th>
+                                                                <th height="40px">IP Address</th>
                                                             </tr>
-                                                        <?php } ?>
-                                                    </tbody>
-                                                </table>
+                                                        </thead>
+                                                        <tfoot>
+                                                            <!-- Paging -->
+                                                        </tfoot>
+                                                        <tbody>
+                                                            <?php
+                                                            $topten_view = $data->getViewTopTenLog();
+                                                            while ($topten_row = mysql_fetch_array($topten_view)) {
+                                                                ?>
+                                                                <tr>
+                                                                    <td height="25px"><?= $topten_row['USER_NAME'] ?></td>
+                                                                    <td height="25px"><?= $topten_row['USER_IP'] ?>  (<?= $topten_row['COUNT(*)'] ?> Hit)</td>
+
+                                                                </tr>
+                                                            <?php } ?>
+                                                        </tbody>
+                                                    </table>
+                                                 </div>
+                                            </div>
+                                            <div class="half-size-column fr">
+                                                <div class="content-module-main">
+                                                    Login Summary
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th height="40px">Username</th>
+                                                                <th>Hit</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tfoot>
+                                                            <!-- Paging -->
+                                                        </tfoot>
+                                                        <tbody>
+                                                            <?php
+                                                            $summary = $data->getUserSummaryLog();
+                                                            while ($row = mysql_fetch_array($summary)) {
+                                                                ?>
+                                                                <tr>
+                                                                    <td height="25px"><?= $row['USER_NAME'] ?></td>
+                                                                    <td height="25px"><?= $row['COUNT(*)'] ?></td>
+                                                                </tr>
+                                                            <?php } ?>
+                                                        </tbody>
+                                                    </table>
                                                     <table>
                                                         <thead>
                                                             <tr>
@@ -157,14 +199,6 @@ $topten = $data->getViewTopTenLog();
                                                     </table>
                                                 </div>
                                             </div>
-					</div> <!-- end content-module-main -->
-				</div> <!-- end content-module -->
-				<div class="content-module">
-					<div class="content-module-heading cf">
-						<h3 class="fl">Last 10 Login Linux Users Login</h3>
-					</div> <!-- end content-module-heading -->					
-					<!--<div class="content-module-main cf"> -->
-                                        <div class="content-module-main">
                                             <table>
 							<thead>
 								<tr>
