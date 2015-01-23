@@ -3,7 +3,7 @@
 Halaman class.db.php
 */
 class ConnectionDB {
-        var $connect;
+        private $connect;
 
         public function closeConnection() {
                 mysql_close($this->connect);
