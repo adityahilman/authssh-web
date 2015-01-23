@@ -68,6 +68,14 @@ class ViewLog {
         return $query;
     }
     
+    public function getTopTenIpSummaryLog() {
+        $sql_toptenip="SELECT USER_IP, COUNT(*) FROM USER_LOG GROUP BY USER_IP ORDER BY COUNT(*) DESC LIMIT 10";
+        $c=new ConnectionDB();
+        $c->openConnection();
+        $query_toptenip = mysql_query($sql_toptenip) or die (mysql_error());
+        return $query_toptenip;
+    }
+    
     public function getSearchUsers() {
         $search_user = "SELECT * FROM USER_LOG WHERE USER_NAME = '".$this->getUsername()."' ";
         $c = new ConnectionDB();
