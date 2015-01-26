@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.7
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 02, 2015 at 02:13 PM
--- Server version: 5.1.73
--- PHP Version: 5.3.3
+-- Generation Time: Jan 26, 2015 at 10:30 PM
+-- Server version: 5.5.40-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4.5
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -29,16 +29,17 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `USER` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `USER_NAME` varchar(50) NOT NULL,
+  `USER_DETAIL` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `USER`
 --
 
-INSERT INTO `USER` (`ID`, `USER_NAME`) VALUES
-(2, 'root'),
-(3, 'adit');
+INSERT INTO `USER` (`ID`, `USER_NAME`, `USER_DETAIL`) VALUES
+(5, 'root', 'uid=0(root) gid=0(root) groups=0(root)\n'),
+(6, 'adit', 'uid=1000(adit) gid=1000(adit) groups=1000(adit),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),108(lpadmin),124(sambashare)\n');
 
 -- --------------------------------------------------------
 
@@ -53,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `USER_ADMIN` (
   `EMAIL_ADMIN` varchar(50) NOT NULL,
   `LEVEL_ADMIN` varchar(25) NOT NULL,
   PRIMARY KEY (`ID_ADMIN`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `USER_ADMIN`
@@ -61,20 +62,8 @@ CREATE TABLE IF NOT EXISTS `USER_ADMIN` (
 
 INSERT INTO `USER_ADMIN` (`ID_ADMIN`, `USERNAME_ADMIN`, `PASSWORD_ADMIN`, `EMAIL_ADMIN`, `LEVEL_ADMIN`) VALUES
 (1, 'admin', 'hilman', 'admin@1rstwap.com', 'superuser'),
-(2, 'adit', 'hilman', 'adit@1rstwap.com', 'administrator');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `USER_CACHE`
---
-
-CREATE TABLE IF NOT EXISTS `USER_CACHE` (
-  `CACHE_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `CACHE_USER` varchar(255) NOT NULL,
-  `CACHE_CODE` varchar(20) NOT NULL,
-  PRIMARY KEY (`CACHE_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+(2, 'adit', 'hilman', 'adit@1rstwap.com', 'administrator'),
+(6, 'hilman', 'hilman', 'hilman@1rstwap.com', 'user');
 
 -- --------------------------------------------------------
 
