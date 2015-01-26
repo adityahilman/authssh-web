@@ -4,6 +4,24 @@ if (!isset($_SESSION['USERNAME_ADMIN']))
 {
     header("location:index.html");
 }
+if ($_SESSION['LEVEL_ADMIN'] != 'superuser' && $_SESSION['LEVEL_ADMIN'] != 'administrator' ) 
+{
+    ?>
+    <script>alert("Access Denied!");document.location.href="dashboard.php";</script>
+    <?php
+}
+/*
+elseif ($_SESSION['LEVEL_ADMIN'] == 'administrator') 
+{
+    header("location:view.webusers.php");
+}
+else 
+{
+    ?>
+    <script>alert("Access Denied!");document.location.href="dashboard.php";</script>
+    <?php
+}
+*/
 ?>
 
 <!DOCTYPE html>
@@ -26,13 +44,9 @@ if (!isset($_SESSION['USERNAME_ADMIN']))
 </head>
 <body>
 <?php
-include_once "jpgraph/src/jpgraph.php";
-include_once "jpgraph/src/jpgraph_bar.php";
-include_once "jpgraph/src/jpgraph_line.php";
-include 'classess/class.viewlog.php';
-$data = new ViewLog();
-$list = $data->getViewLastTenLog();
-$topten = $data->getViewTopTenLog();
+include 'classess/class.user.php';
+$data = new USERS;
+$list = $data->getUsersLinux();
 ?>
 	<!-- TOP BAR -->
 	<div id="top-bar">
@@ -73,71 +87,89 @@ $topten = $data->getViewTopTenLog();
 			<div class="side-menu fl">
 				
 				<h3>Menu</h3>
-                                <?php include 'menu.php' ?>
+				<?php
+                                include 'menu.php'
+                                ?>
 			</div> <!-- end side-menu -->			
 			<div class="side-content fr">
 				<div class="content-module">
 					<div class="content-module-heading cf">
-						<h3 class="fl">Login Users Linux Summary</h3>
+						<h3 class="fl">Registered Linux Users</h3>
 					</div> <!-- end content-module-heading -->
 					<div class="content-module-main cf">
-                                            <div class="half-size-column fr">
-                                                <img src="summary.chart.php">
-                                            </div>
                                             <div class="half-size-column fl">
-                                                <div class="content-module-main">
-                                                    Server Information
-                                                    <table>
-                                                        
-                                                        <tfoot>
-                                                            <!-- Paging -->
-                                                        </tfoot>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td height="25px">OS</td>
-                                                                <td height="25px"><?php $os = shell_exec("uname"); echo "$os"; ?> </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td height="25px">OS Architecture</td>
-                                                                <td height="25px"><?php $uname_p = shell_exec("uname -p"); echo "$uname_p"; ?> </td>
-                                                            </tr>
-                                                             <tr>
-                                                                <td height="25px">Kernel Version</td>
-                                                                <td height="25px"><?php $uname_r = shell_exec("uname -r ; uname -v"); echo "$uname_r"; ?> </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td height="25px">Hostname</td>
-                                                                <td height="25px"><?php $hostname = shell_exec("hostname"); echo "$hostname"; ?> </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td height="25px">IP Address</td>
-                                                                <td height="25px"><?php $ip_addr = shell_exec("ifconfig | grep 'inet addr' | cut -d: -f2 | awk '{ print $1 }'"); echo "$ip_addr"; ?> </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td height="25px">Uptime</td>
-                                                                <td height="25px"><?php $uptime = shell_exec("uptime"); echo "$uptime"; ?></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>                                                   
-                                                </div>
+                                                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+							<label for="textarea">Search Linux User </label>
+                                                        <input type="text" id="simple-input" name="username" class="round default-width-input" />
+                                                        <input type="submit" name="btnSubmit" id="btnSubmit" class="button round blue image-right ic-search text-upper" value="Detail"/>
+                                                </form>
+                                                <br>
+                                                <?php 
+                                                if(isset($_POST['btnSubmit']))
+                                                {
+                                                    $username = $_POST['username'];
+                                                    $userid = shell_exec("id $username");
+                                                    if (empty($userid)) {
+                                                        echo "USER NOT FOUND";
+                                                    } else {
+                                                        echo "$userid";
+                                                    }
+                                                }
+                                                ?>
                                             </div>
+                                            <div class="half-size-column fr">
+                                                <form method="POST" action="#">
+                                                <label for="simple-input">Register Linux User</label>
+                                                <input type="text" id="simple-input" name="userlinux" class="round default-width-input" />
+                                                <input type="submit" name="btnRegister" id="btnSubmit" class="button round blue image-right ic-add text-upper" value="Register"/>
+                                                </form>
+                                                <?php 
+                                                if(isset($_POST['btnRegister']))
+                                                {
+                                                    $userlinux = $_POST['userlinux'];
+                                                    if(empty($userlinux)) {
+                                                ?> 
+                                                <div class="error-box round">Please input the Username.</div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                        $getuserlinux = shell_exec("id $userlinux");
+                                                        if (empty($getuserlinux)) {
+                                                            ?>
+                                                            <div class="error-box round">User NOT FOUND.</div>
+                                                            <?php
+                                                        }
+                                                        else {
+                                                            echo "User $getuserlinux";
+                                                            $adduserlinux = new USERS();
+                                                            $adduserlinux->setUsername($userlinux);
+                                                            $adduserlinux->setUserDetail($getuserlinux);
+                                                            $result_userlinux = $adduserlinux->getAddUsersLinux();
+                                                            
+                                                            if ($result_userlinux) {
+                                                                ?>
+                                                                <script>alert("Add User is succesfully.");document.location.href="#";</script>
+                                                                <?php
+                                                            } 
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            </div>
+                                            
 					</div> <!-- end content-module-main -->
 				</div> <!-- end content-module -->
 				<div class="content-module">
 					<div class="content-module-heading cf">
-						<h3 class="fl">Last 10 Login Linux Users Login</h3>
+						<h3 class="fl">Detail Registered Linux Users</h3>
 					</div> <!-- end content-module-heading -->					
 					<!--<div class="content-module-main cf"> -->
-                                        <div class="content-module-main">
-                                             <div class="half-size-column fl">
-                                                 <div class="content-module-main">
-
-                                                Traffic Summary
+                                        <div class="content-module-main cf">
                                                     <table>
                                                         <thead>
                                                             <tr>
-                                                                <th height="40px">Username</th>
-                                                                <th height="40px">IP Address</th>
+                                                                <th height="40px" >Username</th>
+                                                                <th>User Detail</th>
                                                             </tr>
                                                         </thead>
                                                         <tfoot>
@@ -145,91 +177,17 @@ $topten = $data->getViewTopTenLog();
                                                         </tfoot>
                                                         <tbody>
                                                             <?php
-                                                            $topten_view = $data->getViewTopTenLog();
-                                                            while ($topten_row = mysql_fetch_array($topten_view)) {
-                                                                ?>
-                                                                <tr>
-                                                                    <td height="25px"><?= $topten_row['USER_NAME'] ?></td>
-                                                                    <td height="25px"><?= $topten_row['USER_IP'] ?>  (<?= $topten_row['COUNT(*)'] ?> Hit)</td>
-
-                                                                </tr>
-                                                            <?php } ?>
-                                                        </tbody>
-                                                    </table>
-                                                 </div>
-                                            </div>
-                                            <div class="half-size-column fr">
-                                                <div class="content-module-main">
-                                                    Login Summary
-                                                    <table>
-                                                        <thead>
-                                                            <tr>
-                                                                <th height="40px">Username</th>
-                                                                <th>Hit</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tfoot>
-                                                            <!-- Paging -->
-                                                        </tfoot>
-                                                        <tbody>
-                                                            <?php
-                                                            $summary = $data->getUserSummaryLog();
+                                                            $summary = $data->getUsersLinux();
                                                             while ($row = mysql_fetch_array($summary)) {
                                                                 ?>
                                                                 <tr>
-                                                                    <td height="25px"><?= $row['USER_NAME'] ?></td>
-                                                                    <td height="25px"><?= $row['COUNT(*)'] ?></td>
+                                                                    <td height="25px" width="5px"><?= $row['USER_NAME'] ?></td>
+                                                                    <td height="25px" width="5px"><?= $row['USER_DETAIL'] ?></td>
                                                                 </tr>
                                                             <?php } ?>
                                                         </tbody>
                                                     </table>
-                                                    <table>
-                                                        <thead>
-                                                            <tr>
-                                                                <th height="40px">IP Address</th>
-                                                                <th>Hit</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tfoot>
-                                                            <!-- Paging -->
-                                                        </tfoot>
-                                                        <tbody>
-                                                            <?php
-                                                            $summary_ip = $data->getTopTenIpSummaryLog();
-                                                            while ($row_ip = mysql_fetch_array($summary_ip)) {
-                                                                ?>
-                                                                <tr>
-                                                                    <td height="25px"><?= $row_ip['USER_IP'] ?></td>
-                                                                    <td height="25px"><?= $row_ip['COUNT(*)'] ?></td>
-                                                                </tr>
-                                                            <?php } ?>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <table>
-							<thead>
-								<tr>
-                                                                        <th>Username</th>
-									<th>IP Address</th>
-									<th>Date</th>
-                                                                        <th>Status</th>        
-								</tr>
-							</thead>
-							<tfoot>
-								<!-- Paging -->
-							</tfoot>
-							<tbody>
-                                                            <?php while($row= mysql_fetch_array($list)) { ?>
-								<tr>
-									<td><?= $row['USER_NAME'] ?></td>
-                                                                        <td><?= $row['USER_IP'] ?></td>
-									<td><?= $row['USER_LASTLOGIN'] ?></td>
-									<td><?= $row['USER_LOGIN_STATUS'] ?></a></td>
-								</tr>
-                                                            <?php } ?>
-							</tbody>
-						</table>
+                                                    <br>
 					</div> <!-- end content-module-main -->
 				</div> <!-- end content-module -->
 			</div>
