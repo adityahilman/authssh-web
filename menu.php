@@ -13,7 +13,7 @@ and open the template in the editor.
         <ul>
             <li><a href="dashboard.php">Dashboard</a></li>
             <li><a href="view.linuxusers.php">View Linux Users</a></li>
-            <li><a href="#">View Web Portal Users</a></li>
+            <li><a href="view.webusers.php">View Web Portal Users</a></li>
             <li><a href="view.summary.php">Report</a></li>
         </ul>	
     </body>
