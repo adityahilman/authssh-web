@@ -10,18 +10,6 @@ if ($_SESSION['LEVEL_ADMIN'] != 'superuser' && $_SESSION['LEVEL_ADMIN'] != 'admi
     <script>alert("Access Denied!");document.location.href="dashboard.php";</script>
     <?php
 }
-/*
-elseif ($_SESSION['LEVEL_ADMIN'] == 'administrator') 
-{
-    header("location:view.webusers.php");
-}
-else 
-{
-    ?>
-    <script>alert("Access Denied!");document.location.href="dashboard.php";</script>
-    <?php
-}
-*/
 ?>
 
 <!DOCTYPE html>
@@ -97,66 +85,28 @@ $list = $data->getUsersLinux();
 						<h3 class="fl">Registered Linux Users</h3>
 					</div> <!-- end content-module-heading -->
 					<div class="content-module-main cf">
-                                            <div class="half-size-column fl">
-                                                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-							<label for="textarea">Search Linux User </label>
-                                                        <input type="text" id="simple-input" name="username" class="round default-width-input" />
-                                                        <input type="submit" name="btnSubmit" id="btnSubmit" class="button round blue image-right ic-search text-upper" value="Detail"/>
-                                                </form>
-                                                <br>
-                                                <?php 
-                                                if(isset($_POST['btnSubmit']))
-                                                {
-                                                    $username = $_POST['username'];
-                                                    $userid = shell_exec("id $username");
-                                                    if (empty($userid)) {
-                                                        echo "USER NOT FOUND";
-                                                    } else {
-                                                        echo "$userid";
-                                                    }
-                                                }
-                                                ?>
-                                            </div>
-                                            <div class="half-size-column fr">
-                                                <form method="POST" action="#">
-                                                <label for="simple-input">Register Linux User</label>
-                                                <input type="text" id="simple-input" name="userlinux" class="round default-width-input" />
-                                                <input type="submit" name="btnRegister" id="btnSubmit" class="button round blue image-right ic-add text-upper" value="Register"/>
-                                                </form>
-                                                <?php 
-                                                if(isset($_POST['btnRegister']))
-                                                {
-                                                    $userlinux = $_POST['userlinux'];
-                                                    if(empty($userlinux)) {
-                                                ?> 
-                                                <div class="error-box round">Please input the Username.</div>
-                                                <?php
-                                                    }
-                                                    else {
-                                                        $getuserlinux = shell_exec("id $userlinux");
-                                                        if (empty($getuserlinux)) {
-                                                            ?>
-                                                            <div class="error-box round">User NOT FOUND.</div>
-                                                            <?php
-                                                        }
-                                                        else {
-                                                            echo "User $getuserlinux";
-                                                            $adduserlinux = new USERS();
-                                                            $adduserlinux->setUsername($userlinux);
-                                                            $adduserlinux->setUserDetail($getuserlinux);
-                                                            $result_userlinux = $adduserlinux->getAddUsersLinux();
-                                                            
-                                                            if ($result_userlinux) {
-                                                                ?>
-                                                                <script>alert("Add User is succesfully.");document.location.href="#";</script>
-                                                                <?php
-                                                            } 
-                                                        }
-                                                    }
-                                                }
-                                                ?>
-                                            </div>
-                                            
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th height="40px" >Username</th>
+                                                        <th>User Detail</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <!-- Paging -->
+                                                </tfoot>
+                                                <tbody>
+                                                    <?php
+                                                    $summary = $data->getUsersLinux();
+                                                    while ($row = mysql_fetch_array($summary)) {
+                                                        ?>
+                                                        <tr>
+                                                            <td height="25px" width="5px"><?= $row['USER_NAME'] ?></td>
+                                                            <td height="25px" width="5px"><?= $row['USER_DETAIL'] ?></td>
+                                                        </tr>
+                                                    <?php } ?>
+                                                </tbody>
+                                            </table>
 					</div> <!-- end content-module-main -->
 				</div> <!-- end content-module -->
 				<div class="content-module">
@@ -165,28 +115,7 @@ $list = $data->getUsersLinux();
 					</div> <!-- end content-module-heading -->					
 					<!--<div class="content-module-main cf"> -->
                                         <div class="content-module-main cf">
-                                                    <table>
-                                                        <thead>
-                                                            <tr>
-                                                                <th height="40px" >Username</th>
-                                                                <th>User Detail</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tfoot>
-                                                            <!-- Paging -->
-                                                        </tfoot>
-                                                        <tbody>
-                                                            <?php
-                                                            $summary = $data->getUsersLinux();
-                                                            while ($row = mysql_fetch_array($summary)) {
-                                                                ?>
-                                                                <tr>
-                                                                    <td height="25px" width="5px"><?= $row['USER_NAME'] ?></td>
-                                                                    <td height="25px" width="5px"><?= $row['USER_DETAIL'] ?></td>
-                                                                </tr>
-                                                            <?php } ?>
-                                                        </tbody>
-                                                    </table>
+                                           
                                                     <br>
 					</div> <!-- end content-module-main -->
 				</div> <!-- end content-module -->
