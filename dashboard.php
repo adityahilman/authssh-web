@@ -110,10 +110,6 @@ $topten = $data->getViewTopTenLog();
                                                                 <td height="25px"><?php $hostname = shell_exec("hostname"); echo "$hostname"; ?> </td>
                                                             </tr>
                                                             <tr>
-                                                                <td height="25px">IP Address</td>
-                                                                <td height="25px"><?php $ip_addr = shell_exec("ifconfig | grep 'inet addr' | cut -d: -f2 | awk '{ print $1 }'"); echo "$ip_addr"; ?> </td>
-                                                            </tr>
-                                                            <tr>
                                                                 <td height="25px">Uptime</td>
                                                                 <td height="25px"><?php $uptime = shell_exec("uptime"); echo "$uptime"; ?></td>
                                                             </tr>
