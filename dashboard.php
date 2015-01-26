@@ -115,7 +115,7 @@ $topten = $data->getViewTopTenLog();
                                                             </tr>
                                                             <tr>
                                                                 <td height="25px">Uptime</td>
-                                                                <td height="25px"><pre><?php $uptime = shell_exec("uptime -p"); echo "$uptime"; ?></pre></td>
+                                                                <td height="25px"><?php $uptime = shell_exec("uptime"); echo "$uptime"; ?></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>                                                   
