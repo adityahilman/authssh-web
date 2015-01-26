@@ -17,7 +17,7 @@ include dirname(__FILE__) . "/../config/config.db.php";
 
 class USERS {
 //put your code here
-    private $username, $password, $level, $insert, $c;
+    private $username, $password, $level, $insert, $c, $userdetail;
     
     public function getUsername() {
         return $this->username;
@@ -40,6 +40,13 @@ class USERS {
         $this->level=$level;
     }
     
+    public function getUserDetail() {
+        return $this->userdetail;
+    }
+    public function setUserDetail($userdetail) {
+        $this->userdetail=$userdetail;
+    }
+    // --- USER WEB ---
     // function insert User ke table USER_ADMIN
     public function getInsertUser() {
         $insert = false;
@@ -68,7 +75,7 @@ class USERS {
             return $insert;
         }
     }
-    
+    // Update password
     public function getUpdatePassword() {
         $insert = false;
         $sql_update_pass = "UPDATE USER_ADMIN SET PASSWORD_ADMIN = '".$this->getPassword()."' WHERE USERNAME_ADMIN = '".$this->getUsername()."' ";
@@ -83,6 +90,19 @@ class USERS {
         return $insert;
     }
     
+    public function getSearchUsers() {
+        $search_user = "SELECT * FROM USER_ADMIN WHERE USERNAME_ADMIN = '" . $this->getUsername() . "' ";
+        $c = new ConnectionDB();
+        $c->openConnection();
+        $query_search = mysql_query($search_user) or die(mysql_error());
+        return $query_search;
+    }
+
+    // --- End Of USERS WEB ---
+    
+    
+    
+    // --- Function for LINUX USERS ---
     public function getUsersLinux() {
         $sql_linux = "SELECT * FROM USER";
         $c = new ConnectionDB();
@@ -91,11 +111,33 @@ class USERS {
         return $query_linux;
     }
     
-    public function getSearchUsers() {
-        $search_user = "SELECT * FROM USER_ADMIN WHERE USERNAME_ADMIN = '".$this->getUsername()."' ";
-        $c = new ConnectionDB();
+    public function getAddUsersLinux() {
+        $insert = false;
+        $check_userlinux = "SELECT * FROM USER WHERE USER_NAME = '".$this->getUsername()."' ";
+        $c=new ConnectionDB();
         $c->openConnection();
-        $query_search = mysql_query($search_user) or die (mysql_error());
-        return $query_search;
+        $query_check_userlinux = mysql_query($check_userlinux) or die (mysql_error());
+        if (mysql_num_rows($query_check_userlinux) == 1)
+        {
+            ?>
+            <script>alert("User already exist.");document.location.href="view.linuxusers.php";</script>
+            <?php
+        }
+        else 
+        {
+           $sql_userlinux = "INSERT INTO USER (USER_NAME, USER_DETAIL) VALUES ('".$this->getUsername()."', '".$this->getUserDetail()."') ";
+           $c=new ConnectionDB();
+           $c->openConnection();
+           $query_userlinux=mysql_query($sql_userlinux) or die (mysql_error());
+            if($query_userlinux) 
+                {
+                    $insert = true;
+                }
+            $c->closeConnection();
+            return $insert;
+        }
     }
+    
+    // --- END of Function for LINUX USERS ---
+  
 }
