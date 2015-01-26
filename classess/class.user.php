@@ -58,7 +58,7 @@ class USERS {
         if (mysql_num_rows($query_check_user) == 1)
         {
             ?>
-            <script>alert("User already exist.");document.location.href="addusers.html";</script>
+            <script>alert("User already exist.");document.location.href="view.webusers.php";</script>
             <?php
         }
         else 
