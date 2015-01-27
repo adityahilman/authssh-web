@@ -88,8 +88,11 @@ $list = $data->getUsersLinux();
                                             <table>
                                                 <thead>
                                                     <tr>
-                                                        <th height="40px" >Username</th>
-                                                        <th>User Detail</th>
+                                                        <th height="40px" >User ID</th>
+                                                        <th>Username</th>
+                                                        <th>Email</th>
+                                                        <th>User Level</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
@@ -97,12 +100,15 @@ $list = $data->getUsersLinux();
                                                 </tfoot>
                                                 <tbody>
                                                     <?php
-                                                    $summary = $data->getUsersLinux();
+                                                    $summary = $data->getWebUsers();
                                                     while ($row = mysql_fetch_array($summary)) {
                                                         ?>
                                                         <tr>
-                                                            <td height="25px" width="5px"><?= $row['USER_NAME'] ?></td>
-                                                            <td height="25px" width="5px"><?= $row['USER_DETAIL'] ?></td>
+                                                            <td><?= $row['ID_ADMIN'] ?></td>
+                                                            <td height="25px" width="5px"><?= $row['USERNAME_ADMIN'] ?></td>
+                                                            <td height="25px" width="5px"><?= $row['EMAIL_ADMIN'] ?></td>
+                                                            <td height="25px" width="5px"><?= $row['LEVEL_ADMIN'] ?></td>
+                                                            <td height="25px" width="5px"><?php echo "<a href=delete.users.php?id=$row[ID_ADMIN]>"; echo "Remove"; echo "</a>"; ?></td>
                                                         </tr>
                                                     <?php } ?>
                                                 </tbody>
