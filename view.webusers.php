@@ -40,9 +40,7 @@ $list = $data->getUsersLinux();
 	<div id="top-bar">
 		
 		<div class="page-full-width cf">
-
 			<ul id="nav" class="fl">
-	
 				<li class="v-sep"><a href="#" class="round button dark menu-user image-left">Logged in as <strong><?php echo $_SESSION['USERNAME_ADMIN']; ?></strong></a>
 					<ul>
                                             <li><a href="changepassword.php">Change Password</a></li>
@@ -51,10 +49,7 @@ $list = $data->getUsersLinux();
 				<li><a href="logout.php" class="round button dark menu-logoff image-left">Log out</a></li>		
 			</ul> <!-- end nav -->
 		</div> <!-- end full-width -->	
-	
 	</div> <!-- end top-bar -->
-	
-	
 	<!-- HEADER -->
 	<div id="header-with-tabs">	
 		<div class="page-full-width cf">
@@ -64,19 +59,15 @@ $list = $data->getUsersLinux();
 			<!-- Change this image to your own company's logo -->
 			<!-- The logo will automatically be resized to 30px height. -->
 			<a href="#" id="company-branding-small" class="fr"><img src="images/openssh_logo.png" alt="OpenSSH" /></a>
-			
 		</div> <!-- end full-width -->	
 	</div> <!-- end header -->	
 	<!-- MAIN CONTENT -->
 	<div id="content">
-		
 		<div class="page-full-width cf">
-
 			<div class="side-menu fl">
-				
 				<h3>Menu</h3>
 				<?php
-                                include 'menu.php'
+                                include 'menu.php';
                                 ?>
 			</div> <!-- end side-menu -->			
 			<div class="side-content fr">
