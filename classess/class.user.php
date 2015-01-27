@@ -97,6 +97,14 @@ class USERS {
         $query_search = mysql_query($search_user) or die(mysql_error());
         return $query_search;
     }
+    
+    public function getWebUsers() {
+        $list_user = "SELECT * FROM USER_ADMIN";
+        $c = new ConnectionDB();
+        $c->openConnection();
+        $query_list_user = mysql_query($list_user) or die(mysql_error());
+        return $query_list_user;
+    }
 
     // --- End Of USERS WEB ---
     
