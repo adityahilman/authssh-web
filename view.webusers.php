@@ -82,7 +82,7 @@ $list = $data->getUsersLinux();
 			<div class="side-content fr">
 				<div class="content-module">
 					<div class="content-module-heading cf">
-						<h3 class="fl">Registered Linux Users</h3>
+						<h3 class="fl">Users Web</h3>
 					</div> <!-- end content-module-heading -->
 					<div class="content-module-main cf">
                                             <table>
@@ -113,16 +113,9 @@ $list = $data->getUsersLinux();
                                                     <?php } ?>
                                                 </tbody>
                                             </table>
-					</div> <!-- end content-module-main -->
-				</div> <!-- end content-module -->
-				<div class="content-module">
-					<div class="content-module-heading cf">
-						<h3 class="fl">Detail Registered Linux Users</h3>
-					</div> <!-- end content-module-heading -->					
-					<!--<div class="content-module-main cf"> -->
-                                        <div class="content-module-main cf">
-                                           
-                                                    <br>
+                                            <ul class="temporary-button-showcase">
+                                                <li><a href="addusersweb.php" class="button round blue image-right ic-add text-upper">Add User</a></li>
+                                            </ul>
 					</div> <!-- end content-module-main -->
 				</div> <!-- end content-module -->
 			</div>
