@@ -7,7 +7,7 @@
  */
 // Config SKRIPSI DB
 define('DB_NAME', 'AUTHSSH');
-define('DB_USER', 'skripsi');
-define('DB_PASS', 'hilman');
-define('DB_HOST', 'skripsi');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_HOST', 'localhost');
 ?>
