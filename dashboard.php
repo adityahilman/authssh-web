@@ -73,7 +73,7 @@ $topten = $data->getViewTopTenLog();
 			<div class="side-menu fl">
 				
 				<h3>Menu</h3>
-                                <?php include 'menu.php' ?>
+                                <?php include 'menu.php'; ?>
 			</div> <!-- end side-menu -->			
 			<div class="side-content fr">
 				<div class="content-module">
