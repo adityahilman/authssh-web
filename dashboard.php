@@ -125,9 +125,31 @@ $topten = $data->getViewTopTenLog();
 					</div> <!-- end content-module-heading -->					
 					<!--<div class="content-module-main cf"> -->
                                         <div class="content-module-main">
+                                            <table>
+							<thead>
+								<tr>
+                                                                        <th>Username</th>
+									<th>IP Address</th>
+									<th>Date</th>
+                                                                        <th>Status</th>        
+								</tr>
+							</thead>
+							<tfoot>
+								<!-- Paging -->
+							</tfoot>
+							<tbody>
+                                                            <?php while($row= mysql_fetch_array($list)) { ?>
+								<tr>
+									<td><?= $row['USER_NAME'] ?></td>
+                                                                        <td><?= $row['USER_IP'] ?></td>
+									<td><?= $row['USER_LASTLOGIN'] ?></td>
+									<td><?= $row['USER_LOGIN_STATUS'] ?></a></td>
+								</tr>
+                                                            <?php } ?>
+							</tbody>
+                                            </table>
                                              <div class="half-size-column fl">
                                                  <div class="content-module-main">
-
                                                 Traffic Summary
                                                     <table>
                                                         <thead>
@@ -204,28 +226,8 @@ $topten = $data->getViewTopTenLog();
                                                 </div>
                                             </div>
                                             <table>
-							<thead>
-								<tr>
-                                                                        <th>Username</th>
-									<th>IP Address</th>
-									<th>Date</th>
-                                                                        <th>Status</th>        
-								</tr>
-							</thead>
-							<tfoot>
-								<!-- Paging -->
-							</tfoot>
-							<tbody>
-                                                            <?php while($row= mysql_fetch_array($list)) { ?>
-								<tr>
-									<td><?= $row['USER_NAME'] ?></td>
-                                                                        <td><?= $row['USER_IP'] ?></td>
-									<td><?= $row['USER_LASTLOGIN'] ?></td>
-									<td><?= $row['USER_LOGIN_STATUS'] ?></a></td>
-								</tr>
-                                                            <?php } ?>
-							</tbody>
-						</table>
+							
+                                            </table>
 					</div> <!-- end content-module-main -->
 				</div> <!-- end content-module -->
 			</div>
