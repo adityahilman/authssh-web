@@ -94,8 +94,23 @@ $list = $data->getUsersLinux();
                                                                 <td><input type="text" id="simple-input" name="txtUsername" class="round default-width-input"/></td>
                                                             </tr>
                                                             <tr>
+                                                                <td>Email</td>
+                                                                <td><input type="text" id="simple-input" name="txtEmail" class="round default-width-input"/></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>User Level</td>
+                                                                <td>
+                                                                    <select id="dropdown-actions" name="txtUserlevel">
+                                                                        <option value="0">- Select User Level -</option>
+                                                                        <option value="superuser">Super User</option>
+                                                                        <option value="administrator">Administrator</option>
+                                                                        <option value="user">User</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
                                                                 <td>Password</td>
-                                                                <td><input type="password" id="simple-input" name="txtPass" class="round default-width-input"/></td>
+                                                                <td><input type="password" id="simple-input" name="txtPass1" class="round default-width-input"/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Retype Password</td>
@@ -104,9 +119,50 @@ $list = $data->getUsersLinux();
                                                         </table>
                                                         <input type="submit" name="btnSubmit" id="btnSubmit" class="button round blue image-right ic-right-arrow text-upper" value="Submit"/>
                                                     </form>
-                                                <?php 
-                                                
-                                                ?>
+                                                    <br>
+                                                    <?php
+                                                    // Submit Process
+                                                    if (isset($_POST['btnSubmit']))
+                                                    {
+                                                        $txtUsername = $_POST['txtUsername'];
+                                                        $txtEmail = $_POST['txtEmail'];
+                                                        $txtUserlevel = $_POST['txtUserlevel'];
+                                                        $txtPass1 = $_POST['txtPass1'];
+                                                        $txtPass2 = $_POST['txtPass2'];
+                                                        
+                                                        if (empty($txtUsername))
+                                                        {
+                                                            ?> <div class="error-box round">Username is empty.</div> <?php
+                                                        }
+                                                        elseif(!filter_var($txtEmail, FILTER_VALIDATE_EMAIL)) 
+                                                        {
+                                                            ?> <div class="error-box round">Invalid Email Format.</div> <?php
+                                                        }
+                                                        elseif (empty($txtPass1))
+                                                        {
+                                                            ?> <div class="error-box round">Password is empty.</div> <?php
+                                                        }
+                                                        elseif (empty($txtPass2))
+                                                        {
+                                                            ?> <div class="error-box round">Retype password correctly.</div> <?php
+                                                        }
+                                                        elseif ($txtUserlevel == '0')
+                                                        {
+                                                            ?> <div class="error-box round">Please select User Level.</div> <?php
+                                                        }
+                                                        elseif ($txtPass1 != $txtPass2)
+                                                        {
+                                                            ?> <div class="error-box round">Please retype password correctly.</div> <?php
+                                                        }
+                                                        else
+                                                        {
+                                                            ?> <script>alert("Add User is succesfully.");document.location.href="view.webusers.php";</script> <?php
+                                                        }
+                                                       
+                                                        
+                                                        
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
                                             
