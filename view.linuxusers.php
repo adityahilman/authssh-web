@@ -76,7 +76,7 @@ $list = $data->getUsersLinux();
 				
 				<h3>Menu</h3>
 				<?php
-                                include 'menu.php'
+                                include 'menu.php';
                                 ?>
 			</div> <!-- end side-menu -->			
 			<div class="side-content fr">
