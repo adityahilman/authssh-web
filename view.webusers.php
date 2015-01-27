@@ -88,7 +88,6 @@ $list = $data->getUsersLinux();
                                             <table>
                                                 <thead>
                                                     <tr>
-                                                        <th height="40px" >User ID</th>
                                                         <th>Username</th>
                                                         <th>Email</th>
                                                         <th>User Level</th>
@@ -104,11 +103,10 @@ $list = $data->getUsersLinux();
                                                     while ($row = mysql_fetch_array($summary)) {
                                                         ?>
                                                         <tr>
-                                                            <td><?= $row['ID_ADMIN'] ?></td>
                                                             <td height="25px" width="5px"><?= $row['USERNAME_ADMIN'] ?></td>
                                                             <td height="25px" width="5px"><?= $row['EMAIL_ADMIN'] ?></td>
                                                             <td height="25px" width="5px"><?= $row['LEVEL_ADMIN'] ?></td>
-                                                            <td height="25px" width="5px"><?php echo "<a href=delete.users.php?id=$row[ID_ADMIN]>"; echo "Remove"; echo "</a>"; ?></td>
+                                                            <td height="25px" width="5px"><?php echo "<a class='table-actions-button ic-table-delete' href=delete.users.php?id=$row[USERNAME_ADMIN]>"; echo "</a>"; ?></td>
                                                         </tr>
                                                     <?php } ?>
                                                 </tbody>
