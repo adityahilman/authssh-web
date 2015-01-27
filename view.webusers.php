@@ -106,11 +106,14 @@ $list = $data->getUsersLinux();
                                                 <li><a href="addusersweb.php" class="button round blue image-right ic-add text-upper">Add User</a></li>
                                             </ul>
 					</div> <!-- end content-module-main -->
+                                        <div class="content-module">
+                                            <div class="content-module-heading cf">
+                                            </div>
+                                        </div>
 				</div> <!-- end content-module -->
 			</div>
-			</div> <!-- end side-content -->
-		</div> <!-- end full-width -->
-	</div> <!-- end content -->
+		</div> <!-- end side-content -->
+	</div> <!-- end full-width -->
 	<!-- FOOTER -->
 	<div id="footer">
 
