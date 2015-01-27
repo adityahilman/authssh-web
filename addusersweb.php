@@ -90,12 +90,16 @@ $list = $data->getUsersLinux();
                                                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                                         <table>
                                                             <tr>
-                                                                <td>New Password</td>
-                                                                <td><input type="password" id="simple-input" name="newPass" class="round default-width-input"/></td>
+                                                                <td>Username</td>
+                                                                <td><input type="text" id="simple-input" name="txtUsername" class="round default-width-input"/></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Password</td>
+                                                                <td><input type="password" id="simple-input" name="txtPass" class="round default-width-input"/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Retype Password</td>
-                                                                <td><input type="password" id="simple-input" name="newPass2" class="round default-width-input"/></td>
+                                                                <td><input type="password" id="simple-input" name="txtPass2" class="round default-width-input"/></td>
                                                             </tr>
                                                         </table>
                                                         <input type="submit" name="btnSubmit" id="btnSubmit" class="button round blue image-right ic-right-arrow text-upper" value="Submit"/>
@@ -106,37 +110,6 @@ $list = $data->getUsersLinux();
                                                 </div>
                                             </div>
                                             
-					</div> <!-- end content-module-main -->
-				</div> <!-- end content-module -->
-				<div class="content-module">
-					<div class="content-module-heading cf">
-						<h3 class="fl">Detail Registered Linux Users</h3>
-					</div> <!-- end content-module-heading -->					
-					<!--<div class="content-module-main cf"> -->
-                                        <div class="content-module-main cf">
-                                                    <table>
-                                                        <thead>
-                                                            <tr>
-                                                                <th height="40px" >Username</th>
-                                                                <th>User Detail</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tfoot>
-                                                            <!-- Paging -->
-                                                        </tfoot>
-                                                        <tbody>
-                                                            <?php
-                                                            $summary = $data->getUsersLinux();
-                                                            while ($row = mysql_fetch_array($summary)) {
-                                                                ?>
-                                                                <tr>
-                                                                    <td height="25px" width="5px"><?= $row['USER_NAME'] ?></td>
-                                                                    <td height="25px" width="5px"><?= $row['USER_DETAIL'] ?></td>
-                                                                </tr>
-                                                            <?php } ?>
-                                                        </tbody>
-                                                    </table>
-                                                    <br>
 					</div> <!-- end content-module-main -->
 				</div> <!-- end content-module -->
 			</div>
