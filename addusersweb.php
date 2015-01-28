@@ -33,8 +33,7 @@ if ($_SESSION['LEVEL_ADMIN'] != 'superuser' && $_SESSION['LEVEL_ADMIN'] != 'admi
 <body>
 <?php
 include 'classess/class.user.php';
-$data = new USERS;
-$list = $data->getUsersLinux();
+
 ?>
 	<!-- TOP BAR -->
 	<div id="top-bar">
@@ -129,6 +128,7 @@ $list = $data->getUsersLinux();
                                                         $txtUserlevel = $_POST['txtUserlevel'];
                                                         $txtPass1 = $_POST['txtPass1'];
                                                         $txtPass2 = $_POST['txtPass2'];
+                                                        $txtcreatedby = $_SESSION['USERNAME_ADMIN'];
                                                         
                                                         if (empty($txtUsername))
                                                         {
@@ -156,11 +156,19 @@ $list = $data->getUsersLinux();
                                                         }
                                                         else
                                                         {
-                                                            ?> <script>alert("Add User is succesfully.");document.location.href="view.webusers.php";</script> <?php
+                                                            $adduser = new USERS();
+                                                            $adduser->setUsername($txtUsername);
+                                                            $adduser->setPassword($txtPass2);
+                                                            $adduser->setLevel($txtUserlevel);
+                                                            $adduser->setEmail($txtEmail);
+                                                            $adduser->setCreatedBy($txtcreatedby);
+                                                            $result = $adduser->getInsertUser();
+                                                            if($result)
+                                                            {
+                                                                ?> <script>alert("Add User is succesfully.");document.location.href="view.webusers.php";</script> <?php
+                                                            }
+                                                            
                                                         }
-                                                       
-                                                        
-                                                        
                                                     }
                                                     ?>
                                                 </div>
