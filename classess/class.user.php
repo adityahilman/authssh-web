@@ -17,7 +17,7 @@ include dirname(__FILE__) . "/../config/config.db.php";
 
 class USERS {
 //put your code here
-    private $username, $password, $level, $insert, $c, $userdetail;
+    private $username, $password, $level, $insert, $c, $userdetail, $email;
     
     public function getUsername() {
         return $this->username;
@@ -33,6 +33,14 @@ class USERS {
         $this->password=$password;
     }
     
+    public function getEmail() {
+        return $this->email;
+    }
+    public function setEmail($email) {
+        $this->email=$email;
+    }
+
+
     public function getLevel() {
         return $this->level;
     }
