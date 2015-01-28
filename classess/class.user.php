@@ -17,7 +17,7 @@ include dirname(__FILE__) . "/../config/config.db.php";
 
 class USERS {
 //put your code here
-    private $username, $password, $level, $insert, $c, $userdetail, $email;
+    private $username, $password, $level, $insert, $c, $userdetail, $email, $createdby, $delete;
     
     public function getUsername() {
         return $this->username;
@@ -40,12 +40,18 @@ class USERS {
         $this->email=$email;
     }
 
-
     public function getLevel() {
         return $this->level;
     }
     public function setLevel($level) {
         $this->level=$level;
+    }
+    
+    public function getCreatedBy() {
+        return $this->createdby;
+    }
+    public function setCreatedBy($createdby) {
+        $this->createdby=$createdby;
     }
     
     public function getUserDetail() {
@@ -71,7 +77,7 @@ class USERS {
         }
         else 
         {
-           $sql = "INSERT INTO USER_ADMIN (USERNAME_ADMIN, PASSWORD_ADMIN, LEVEL_ADMIN) VALUES ('".$this->getUsername()."','".$this->getPassword()."','".$this->getLevel()."')";
+           $sql = "INSERT INTO USER_ADMIN (USERNAME_ADMIN, EMAIL_ADMIN, PASSWORD_ADMIN, LEVEL_ADMIN, CREATED_BY) VALUES ('".$this->getUsername()."','".$this->getEmail()."','".$this->getPassword()."','".$this->getLevel()."','".$this->getCreatedBy()."')";
            $c=new ConnectionDB();
            $c->openConnection();
            $query=mysql_query($sql) or die (mysql_error());
@@ -83,6 +89,24 @@ class USERS {
             return $insert;
         }
     }
+    
+    // function delete web user 
+    public function getDeleteUser() {
+        $delete = false;
+        $username_admin = $_GET['username'];
+        //$sql_del_user = "DELETE FROM USER_ADMIN WHERE USERNAME_ADMIN = '".$this->getUsername()."' ";
+        $sql_del_user = "DELETE FROM USER_ADMIN WHERE USERNAME_ADMIN = '$username_admin' ";
+        $c = new ConnectionDB();
+        $c->openConnection();
+        $query_del_user = mysql_query($sql_del_user) or die (mysql_error());
+        if ($query_del_user)
+        {
+            $delete = TRUE;
+        }
+        $c->closeConnection();
+        return $delete;
+    }
+    
     // Update password
     public function getUpdatePassword() {
         $insert = false;
