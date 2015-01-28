@@ -94,17 +94,26 @@ class USERS {
     public function getDeleteUser() {
         $delete = false;
         $username_admin = $_GET['username'];
-        //$sql_del_user = "DELETE FROM USER_ADMIN WHERE USERNAME_ADMIN = '".$this->getUsername()."' ";
-        $sql_del_user = "DELETE FROM USER_ADMIN WHERE USERNAME_ADMIN = '$username_admin' ";
-        $c = new ConnectionDB();
-        $c->openConnection();
-        $query_del_user = mysql_query($sql_del_user) or die (mysql_error());
-        if ($query_del_user)
+        // user admin tidak boleh di delete
+        if ($username_admin == 'admin')
         {
-            $delete = TRUE;
+            ?> <script>alert("Cannot delete user admin.");document.location.href="view.webusers.php";</script> <?php
+            return $delete;
         }
-        $c->closeConnection();
-        return $delete;
+        else {
+            //$sql_del_user = "DELETE FROM USER_ADMIN WHERE USERNAME_ADMIN = '".$this->getUsername()."' ";
+            $sql_del_user = "DELETE FROM USER_ADMIN WHERE USERNAME_ADMIN = '$username_admin' ";
+            $c = new ConnectionDB();
+            $c->openConnection();
+            $query_del_user = mysql_query($sql_del_user) or die (mysql_error());
+            if ($query_del_user)
+            {
+                $delete = TRUE;
+            }
+            $c->closeConnection();
+            return $delete;
+        }
+        
     }
     
     // Update password
