@@ -34,7 +34,7 @@ if ($_SESSION['LEVEL_ADMIN'] != 'superuser' && $_SESSION['LEVEL_ADMIN'] != 'admi
 <?php
 include 'classess/class.user.php';
 $data = new USERS;
-$list = $data->getUsersLinux();
+
 ?>
 	<!-- TOP BAR -->
 	<div id="top-bar">
@@ -82,6 +82,7 @@ $list = $data->getUsersLinux();
                                                         <th>Username</th>
                                                         <th>Email</th>
                                                         <th>User Level</th>
+                                                        <th>Created By</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -97,7 +98,8 @@ $list = $data->getUsersLinux();
                                                             <td height="25px" width="5px"><?= $row['USERNAME_ADMIN'] ?></td>
                                                             <td height="25px" width="5px"><?= $row['EMAIL_ADMIN'] ?></td>
                                                             <td height="25px" width="5px"><?= $row['LEVEL_ADMIN'] ?></td>
-                                                            <td height="25px" width="5px"><?php echo "<a class='table-actions-button ic-table-delete' href=delete.users.php?id=$row[USERNAME_ADMIN]>"; echo "</a>"; ?></td>
+                                                            <td height="25px" width="5px"><?= $row['CREATED_BY'] ?></td>
+                                                            <td height="25px" width="5px"><?php echo "<a class='table-actions-button ic-table-delete' href=delete.users.php?username=$row[USERNAME_ADMIN]>"; echo "</a>"; ?></td>
                                                         </tr>
                                                     <?php } ?>
                                                 </tbody>
