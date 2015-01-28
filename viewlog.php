@@ -11,27 +11,37 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        include 'classess/class.viewlog.php';
-        $data=new ViewLog();
-        $list=$data->getViewLog();
+        include 'classess/class.paging.php';
+        $data = new PAGING();
+        $limit = 5;
+        $position = $data->getPosition();
+        $number = $position+1;
+        $list = $data->getData();
         ?>
         <table width="75%" align="left" border="1" cellpadding="1" >
             <tr>
-                <td>ID</td>
+                <th>ID</th>
                 <td>Username</td>
                 <td>IP Address</td>
                 <td>Date</td>
                 <td>Status</td>
             </tr>
-        <?php while($row=  mysql_fetch_array($list)) { ?>
+        <?php foreach ($list as $show) { ?>
             <tr>
-                <td><?= $row['USER_ID'] ?></td>
-                <td><?= $row['USER_NAME'] ?></td>
-                <td><?= $row['USER_IP'] ?></td>
-                <td><?= $row['USER_LASTLOGIN'] ?></td>
-                <td><?= $row['USER_LOGIN_STATUS'] ?></td>
+                <td><?php echo $number; ?></td>
+                <td><?php echo $show['USER_NAME']; ?></td>
+                <td><?php echo $show['USER_IP']; ?></td>
+                <td><?php //$row['USER_LASTLOGIN'] ?></td>
+                <td><?php //$row['USER_LOGIN_STATUS'] ?></td>
             </tr>
-        <?php } ?>
+        <?php $number++; } ?>
         </table>
+        <br>
+        <?php
+        $totalData = $data->countData();
+        $totalPage = $data->countPage($totalData, $limit);
+        $linkPage = $data->navPage($_GET['page'], $totalPage);
+        echo $linkPage;
+        ?>
     </body>
 </html>
