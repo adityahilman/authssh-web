@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 3.5.7
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 26, 2015 at 10:30 PM
--- Server version: 5.5.40-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.5
+-- Generation Time: Jan 30, 2015 at 07:00 PM
+-- Server version: 5.1.73
+-- PHP Version: 5.3.3
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -29,17 +29,17 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `USER` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `USER_NAME` varchar(50) NOT NULL,
-  `USER_DETAIL` varchar(255) NOT NULL,
+  `USER_DETAIL` varchar(100) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `USER`
 --
 
 INSERT INTO `USER` (`ID`, `USER_NAME`, `USER_DETAIL`) VALUES
-(5, 'root', 'uid=0(root) gid=0(root) groups=0(root)\n'),
-(6, 'adit', 'uid=1000(adit) gid=1000(adit) groups=1000(adit),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),108(lpadmin),124(sambashare)\n');
+(2, 'root', ''),
+(3, 'adit', '');
 
 -- --------------------------------------------------------
 
@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `USER_ADMIN` (
   `PASSWORD_ADMIN` varchar(10) NOT NULL,
   `EMAIL_ADMIN` varchar(50) NOT NULL,
   `LEVEL_ADMIN` varchar(25) NOT NULL,
+  `CREATED_BY` varchar(100) NOT NULL,
   PRIMARY KEY (`ID_ADMIN`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
@@ -60,10 +61,9 @@ CREATE TABLE IF NOT EXISTS `USER_ADMIN` (
 -- Dumping data for table `USER_ADMIN`
 --
 
-INSERT INTO `USER_ADMIN` (`ID_ADMIN`, `USERNAME_ADMIN`, `PASSWORD_ADMIN`, `EMAIL_ADMIN`, `LEVEL_ADMIN`) VALUES
-(1, 'admin', 'hilman', 'admin@1rstwap.com', 'superuser'),
-(2, 'adit', 'hilman', 'adit@1rstwap.com', 'administrator'),
-(6, 'hilman', 'hilman', 'hilman@1rstwap.com', 'user');
+INSERT INTO `USER_ADMIN` (`ID_ADMIN`, `USERNAME_ADMIN`, `PASSWORD_ADMIN`, `EMAIL_ADMIN`, `LEVEL_ADMIN`, `CREATED_BY`) VALUES
+(1, 'admin', 'hilman', 'admin@1rstwap.com', 'superuser', 'system'),
+(6, 'adit', 'hilman', 'aditya.hilman@1rstwap.com', 'administrator', 'admin');
 
 -- --------------------------------------------------------
 
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `USER_LOG` (
   `USER_LASTLOGIN` varchar(50) NOT NULL,
   `USER_LOGIN_STATUS` varchar(20) NOT NULL,
   PRIMARY KEY (`USER_ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
 
 --
 -- Dumping data for table `USER_LOG`
@@ -114,7 +114,11 @@ INSERT INTO `USER_LOG` (`USER_ID`, `USER_NAME`, `USER_IP`, `USER_LASTLOGIN`, `US
 (37, 'root', '192.168.0.1', '02-12-2014 16:36:37', 'Success'),
 (38, 'root', '192.168.0.1', '12-12-2014 17:27:44', 'Success'),
 (39, 'root', '192.168.0.1', '12-12-2014 17:31:34', 'Success'),
-(40, 'root', '192.168.0.1', '12-12-2014 17:34:45', 'Success');
+(40, 'root', '192.168.0.1', '12-12-2014 17:34:45', 'Success'),
+(41, 'root', '192.168.100.1', '26-01-2015  8:58:03', 'Failed'),
+(42, 'root', '192.168.100.1', '26-01-2015  8:59:09', 'Success'),
+(43, 'root', '192.168.100.1', '28-01-2015 18:05:11', 'Failed'),
+(44, 'root', '192.168.100.1', '28-01-2015 18:06:15', 'Success');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
