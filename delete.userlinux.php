@@ -18,7 +18,7 @@ and open the template in the editor.
         
         if ($del_userlinux)
         {
-            ?> <script>alert("User has been deleted.");document.location.href="view.webusers.php";</script> <?php
+            ?> <script>alert("User has been deleted.");document.location.href="view.linuxusers.php";</script> <?php
         }
 
         ?>
