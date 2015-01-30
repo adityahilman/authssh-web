@@ -81,7 +81,6 @@ $list = $data->getViewLog();
 					</div> <!-- end content-module-heading -->
 					
 					<div class="content-module-main">
-                                            Content
                                             <table>
                                                 <thead>
                                                     <tr>
