@@ -113,7 +113,7 @@ include 'classess/class.user.php';
 
                                                                 if ($result_userlinux) {
                                                                     ?>
-                                                                    <script>alert("Add User is succesfully.");document.location.href="#";</script>
+                                                                    <script>alert("User has been added.");document.location.href="view.linuxusers.php";</script>
                                                                     <?php
                                                                 }
                                                             }
