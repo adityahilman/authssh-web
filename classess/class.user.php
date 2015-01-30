@@ -77,10 +77,10 @@ class USERS {
         }
         else 
         {
-           $sql = "INSERT INTO USER_ADMIN (USERNAME_ADMIN, EMAIL_ADMIN, PASSWORD_ADMIN, LEVEL_ADMIN, CREATED_BY) VALUES ('".$this->getUsername()."','".$this->getEmail()."','".$this->getPassword()."','".$this->getLevel()."','".$this->getCreatedBy()."')";
+           $sql_webuser = "INSERT INTO USER_ADMIN (USERNAME_ADMIN, EMAIL_ADMIN, PASSWORD_ADMIN, LEVEL_ADMIN, CREATED_BY) VALUES ('".$this->getUsername()."','".$this->getEmail()."','".$this->getPassword()."','".$this->getLevel()."','".$this->getCreatedBy()."')";
            $c=new ConnectionDB();
            $c->openConnection();
-           $query=mysql_query($sql) or die (mysql_error());
+           $query=mysql_query($sql_webuser) or die (mysql_error());
             if($query) 
                 {
                     $insert = true;
@@ -187,6 +187,26 @@ class USERS {
         }
     }
     
-    // --- END of Function for LINUX USERS ---
-  
+    public function getDeleteUsersLinux() {
+        $delete = false;
+        $user_linux = $_GET['user_linux'];
+        $sql_del_userlinux = "DELETE FROM USER WHERE USER_NAME = '$user_linux' ";
+        $c = new ConnectionDB();
+        $c->openConnection();
+        $query_deluserlinux = mysql_query($sql_del_userlinux) or die (mysql_error());
+        if ($query_deluserlinux)
+        {
+            $delete = true;
+        }
+        $c->closeConnection();
+        return $delete;
+    }
+    
+    public function getSearchUsersLinux() {
+        $search_userlinux = "SELECT * FROM USER WHERE USER_NAME =  '" . $this->getUsername() . "' ";
+        $c = new ConnectionDB();
+        $c->openConnection();
+        $query_searchlinux = mysql_query($search_userlinux) or die (mysql_error());
+        return $query_searchlinux;
+    }
 }
