@@ -36,12 +36,14 @@ class ViewLog {
         $query=mysql_query($sql_view) or die (mysql_error());
         return $query;
     }
-    
+    /*
     public function getDownloadLog() {
         $sql_view = "SELECT * FROM USER_LOG";
         $c = new ConnectionDB();
         $c->openConnection();
     }
+     * 
+     */
     
     public function getViewLastTenLog() {
         $sql_view="SELECT * FROM USER_LOG GROUP BY USER_ID DESC LIMIT 10";
