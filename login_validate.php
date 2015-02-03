@@ -45,7 +45,7 @@ if ($login)
 else 
 {
      ?>
-    <script>alert("Login gagal!");document.location.href="index.html";</script>
+    <script>alert("Wrong Username or Password!");document.location.href="index.html";</script>
     <?php
     echo mysql_error();
 }
