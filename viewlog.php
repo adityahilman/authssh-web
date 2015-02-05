@@ -127,6 +127,7 @@ and open the template in the editor.
             <?php } ?>
             </tbody>
         </table>
+        <div class="half-size-column fr">
         <br>
         <?php
         
@@ -135,7 +136,7 @@ and open the template in the editor.
         
         if ($totalData > $limit) {
             echo "Page : ";
-            $a = explode(".", $totalData/$limit);
+            $a = explode("|", $totalData/$limit);
             $b = $a['0'];
             $c = $b + 1;
             for ($i = 1; $i <= $c; $i++)
@@ -153,8 +154,10 @@ and open the template in the editor.
         <br>
         <br>
         <br>
-        <a href="export.php" class="button round blue image-right ic-download text-upper">Download</a>
-
+        </div>             
+                            <div class="half-size-column fl">
+                                <a href="export.php" class="button round blue image-right ic-download text-upper">Download</a>
+                            </div>
                         </div>
 
                     </div> <!-- end content-module -->
