@@ -110,26 +110,12 @@ $list = $data->getViewLog();
                                                 </tbody>
 
                                             </table>	
-					</div> <!-- end content-module-main -->
-				
-				</div> <!-- end content-module -->
-				
-				<div class="content-module">
-				
-					<div class="content-module-heading cf">
-					
-						<h3 class="fl">Log Linux Users Login</h3>
-					
-					</div> <!-- end content-module-heading -->
-					
-					
-					<div class="content-module-main cf">
-                                            <a href="#" class="button round blue image-right ic-download text-upper">Download</a>
-						
-				
-				</div> <!-- end content-module -->
+                                            <a href="export.php" class="button round blue image-right ic-download text-upper">Download</a>
 
-			</div>
+					</div> <!-- end content-module-main -->
+
+				</div> <!-- end content-module -->
+				
 		
 			</div> <!-- end side-content -->
 		
