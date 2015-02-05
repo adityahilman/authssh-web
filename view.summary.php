@@ -130,7 +130,7 @@ and open the template in the editor.
                                 $totalData = mysql_num_rows($dataTable);
 
                                 if ($totalData > $limit) {
-                                    echo "Page : ";
+                                    echo "Page  ";
                                     $a = explode(".", $totalData / $limit);
                                     $b = $a['0'];
                                     $c = $b + 1;
@@ -139,7 +139,7 @@ and open the template in the editor.
                                         if ($_GET['page'] == $i) {
                                             echo "color:red";
                                         }
-                                        echo '" href="?page=' . $i . '">' . $i . '</a>';
+                                        echo '" href="?page='.$i.'">|'.$i.'</a>';
                                     }
                                 }
                                 echo "<br/>Total Data : $totalData";
