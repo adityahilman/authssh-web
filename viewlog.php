@@ -77,100 +77,84 @@ and open the template in the editor.
                         <div class="content-module-heading cf">
                             <h3 class="fl">Summary Users Login</h3>
                         </div> <!-- end content-module-heading -->
+                        <div class="content-module-main cf">
+                            <div class="content-module-main">
+                            <?php
+                            include 'classess/class.viewlog.php';
+                            $data = new ViewLog();
 
-                        <div class="content-module-main">
-        <?php
-        include 'classess/class.viewlog.php';
-        $data = new ViewLog();
-        
-        $page = 1;
-        $limit = 5;
-        $offset = 0;
-        
-        if (!empty($_GET['page'])) {
-            $hal = $_GET['page']-1;
-            $offset = $limit*$hal;
-        }
-        else if (!empty($_GET['page']) && $_GET['page'] == 1) {
-            $offset = 0;
-        }
-        else if (empty ($_GET['page'])) {
-            $offset = 0;
-        }
-        
-        $data->setLimit($limit);
-        $data->setOffset($offset);
-        $data->setPage($page);
+                            $page = 1;
+                            $limit = 5;
+                            $offset = 0;
 
-        $result = $data->getPaging();
-        
-        ?>
-        <table>
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>IP Address</th>
-                <th>Date</th>
-                <th>Status</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php while ($row = mysql_fetch_array($result)) { ?>
-                <tr>
-                    <td><?= $row['USER_ID'] ?></td>
-                    <td><?= $row['USER_NAME'] ?></td>
-                    <td><?= $row['USER_IP'] ?></td>
-                    <td><?= $row['USER_LASTLOGIN'] ?></td>
-                    <td><?= $row['USER_LOGIN_STATUS'] ?></a></td>
-                </tr>
-            <?php } ?>
-            </tbody>
-        </table>
-        <div class="half-size-column fr">
-        <br>
-        <?php
-        
-        $dataTable = $data->getViewLog();
-        $totalData = mysql_num_rows($dataTable);
-        
-        if ($totalData > $limit) {
-            echo "Page : ";
-            $a = explode("|", $totalData/$limit);
-            $b = $a['0'];
-            $c = $b + 1;
-            for ($i = 1; $i <= $c; $i++)
-            {
-                echo '<a style="text-decoration:none;';
-                if ($_GET['page'] == $i) {
-                    echo "color:red";
-                }
-            echo '" href="?page=' . $i . '">' . $i . '</a>';
-            } 
-        }
-                    echo "<br/>Total Data : $totalData";
+                            if (!empty($_GET['page'])) {
+                                $hal = $_GET['page'] - 1;
+                                $offset = $limit * $hal;
+                            } else if (!empty($_GET['page']) && $_GET['page'] == 1) {
+                                $offset = 0;
+                            } else if (empty($_GET['page'])) {
+                                $offset = 0;
+                            }
 
-        ?>
-        <br>
-        <br>
-        <br>
-        </div>             
+                            $data->setLimit($limit);
+                            $data->setOffset($offset);
+                            $data->setPage($page);
+
+                            $result = $data->getPaging();
+                            ?>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Username</th>
+                                        <th>IP Address</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php while ($row = mysql_fetch_array($result)) { ?>
+                                        <tr>
+                                            <td><?= $row['USER_ID'] ?></td>
+                                            <td><?= $row['USER_NAME'] ?></td>
+                                            <td><?= $row['USER_IP'] ?></td>
+                                            <td><?= $row['USER_LASTLOGIN'] ?></td>
+                                            <td><?= $row['USER_LOGIN_STATUS'] ?></a></td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
                             <div class="half-size-column fl">
+                                <?php
+                                $dataTable = $data->getViewLog();
+                                $totalData = mysql_num_rows($dataTable);
+
+                                if ($totalData > $limit) {
+                                    echo "Page : ";
+                                    $a = explode(".", $totalData / $limit);
+                                    $b = $a['0'];
+                                    $c = $b + 1;
+                                    for ($i = 1; $i <= $c; $i++) {
+                                        echo '<a style="text-decoration:none;';
+                                        if ($_GET['page'] == $i) {
+                                            echo "color:red";
+                                        }
+                                        echo '" href="?page=' . $i . '">' . $i . '</a>';
+                                    }
+                                }
+                                echo "<br/>Total Data : $totalData";
+                                ?>
+                            </div>
+                            <div class="half-size-column fr">
                                 <a href="export.php" class="button round blue image-right ic-download text-upper">Download</a>
                             </div>
                         </div>
-
+                        </div>
+                        </div>
                     </div> <!-- end content-module -->
-
-
                 </div> <!-- end side-content -->
-
             </div> <!-- end full-width -->
-
-
         </div> <!-- end content -->
-
-
 
         <!-- FOOTER -->
         <div id="footer">
