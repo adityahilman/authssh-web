@@ -79,6 +79,7 @@ $data = new USERS;
                                             <table>
                                                 <thead>
                                                     <tr>
+                                                        <th>User ID</th>
                                                         <th>Username</th>
                                                         <th>Email</th>
                                                         <th>User Level</th>
@@ -95,6 +96,7 @@ $data = new USERS;
                                                     while ($row = mysql_fetch_array($summary)) {
                                                         ?>
                                                         <tr>
+                                                            <td height="25px" width="5px"><?= $row['ID_ADMIN'] ?></td>
                                                             <td height="25px" width="5px"><?= $row['USERNAME_ADMIN'] ?></td>
                                                             <td height="25px" width="5px"><?= $row['EMAIL_ADMIN'] ?></td>
                                                             <td height="25px" width="5px"><?= $row['LEVEL_ADMIN'] ?></td>
@@ -108,10 +110,7 @@ $data = new USERS;
                                                 <li><a href="addusersweb.php" class="button round blue image-right ic-add text-upper">Add User</a></li>
                                             </ul>
 					</div> <!-- end content-module-main -->
-                                        <div class="content-module">
-                                            <div class="content-module-heading cf">
-                                            </div>
-                                        </div>
+                                      
 				</div> <!-- end content-module -->
 			</div>
 		</div> <!-- end side-content -->
