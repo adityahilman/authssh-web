@@ -145,7 +145,7 @@ class ViewLog {
     }
     
     public function getPaging() {
-        $sql_paging = "SELECT * FROM USER_LOG LIMIT ".$this->getOffset().",".$this->getLimit()." ";
+        $sql_paging = "SELECT * FROM USER_LOG GROUP BY USER_ID DESC LIMIT ".$this->getOffset().",".$this->getLimit()." ";
         $c = new ConnectionDB();
         $c->openConnection();
         $query_paging = mysql_query($sql_paging) or die (mysql_error());

@@ -33,7 +33,7 @@ if ($_SESSION['LEVEL_ADMIN'] != 'superuser') {
 <body>
 <?php
 include 'classess/user.php';
-$data = new USERS;
+$data = new USERS();
 $list = $data->getUsersLinux();
 ?>
 	<!-- TOP BAR -->
@@ -73,7 +73,6 @@ $list = $data->getUsersLinux();
 		<div class="page-full-width cf">
 
 			<div class="side-menu fl">
-				
 				<h3>Menu</h3>
 				<?php
                                 include 'menu.php';
@@ -85,7 +84,7 @@ $list = $data->getUsersLinux();
 						<h3 class="fl">Registered Linux Users</h3>
 					</div> <!-- end content-module-heading -->
 					<div class="content-module-main cf">
-                                            <table>
+                                             <table>
                                                 <thead>
                                                     <tr>
                                                         <th height="40px" >Username</th>
@@ -109,10 +108,12 @@ $list = $data->getUsersLinux();
                                                     <?php } ?>
                                                 </tbody>
                                             </table>
+                                            <div class="content-module-main">
                                             <ul class="temporary-button-showcase">
                                                 <li><a href="adduserslinux.php" class="button round blue image-right ic-add text-upper">Add Linux User</a></li>
                                             </ul>
 					</div> <!-- end content-module-main -->
+                                        </div>
 				</div> <!-- end content-module -->
 			</div>
 			</div> <!-- end side-content -->

@@ -60,6 +60,34 @@ class USERS {
     public function setUserDetail($userdetail) {
         $this->userdetail=$userdetail;
     }
+    
+    // For Paging
+    public function getOffset() {
+        return $this->offset;
+    }
+
+    public function setOffset($offset) {
+        $this->offset = $offset;
+    }
+    
+    public function getLimit() {
+        return $this->limit;
+    }
+
+    public function setLimit($limit) {
+        $this->limit = $limit;
+    }
+
+    public function getPage() {
+        return $this->page;
+    }
+
+    public function setPage($page) {
+        $this->page = $page;
+    }
+    
+    // --- End of Paging Variable ---
+    
     // --- USER WEB ---
     // function insert User ke table USER_ADMIN
     public function getInsertUser() {
@@ -140,13 +168,21 @@ class USERS {
     }
     
     public function getWebUsers() {
-        $list_user = "SELECT * FROM USER_ADMIN GROUP BY ID_ADMIN ASC";
+        $list_user = "SELECT * FROM USER_ADMIN";
         $c = new ConnectionDB();
         $c->openConnection();
         $query_list_user = mysql_query($list_user) or die(mysql_error());
         return $query_list_user;
     }
 
+    public function getPagingWebUsers() {
+        $list_userpaging = "SELECT * FROM USER_ADMIN GROUP BY ID_ADMIN ASC LIMIT ".$this->getOffset().",".$this->getLimit()." ";
+        $c = new ConnectionDB();
+        $c->openConnection();
+        $query_list_userpaging = mysql_query($list_userpaging) or die(mysql_error());
+        return $query_list_userpaging;
+    }
+    
     // --- End Of USERS WEB ---
     
     

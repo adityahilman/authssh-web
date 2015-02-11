@@ -78,13 +78,12 @@ and open the template in the editor.
                             <h3 class="fl">Summary Users Login</h3>
                         </div> <!-- end content-module-heading -->
                         <div class="content-module-main cf">
-                            <div class="content-module-main">
                             <?php
                             include 'classess/viewlog.php';
                             $data = new ViewLog();
 
                             $page = 1;
-                            $limit = 5;
+                            $limit = 10;
                             $offset = 0;
 
                             if (!empty($_GET['page'])) {
@@ -142,13 +141,13 @@ and open the template in the editor.
                                         echo '" href="?page='.$i.'">|'.$i.'</a>';
                                     }
                                 }
+                                echo "<br/>";
                                 echo "<br/>Total Data : $totalData";
                                 ?>
                             </div>
                             <div class="half-size-column fr">
                                 <a href="export.php" class="button round blue image-right ic-download text-upper">Download</a>
                             </div>
-                        </div>
                         </div>
                         </div>
                     </div> <!-- end content-module -->

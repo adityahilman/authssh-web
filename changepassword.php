@@ -27,7 +27,7 @@ if (!isset($_SESSION['USERNAME_ADMIN']))
 <body>
 <?php
 include 'classess/user.php';
-$data = new USERS;
+$data = new USERS();
 $list = $data->getUsersLinux();
 ?>
 	<!-- TOP BAR -->

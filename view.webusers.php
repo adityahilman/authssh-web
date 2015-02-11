@@ -31,11 +31,6 @@ if ($_SESSION['LEVEL_ADMIN'] != 'superuser' && $_SESSION['LEVEL_ADMIN'] != 'admi
 	<script src="js/script.js"></script>  
 </head>
 <body>
-<?php
-include 'classess/user.php';
-$data = new USERS;
-
-?>
 	<!-- TOP BAR -->
 	<div id="top-bar">
 		
@@ -76,6 +71,7 @@ $data = new USERS;
 						<h3 class="fl">Users Web</h3>
 					</div> <!-- end content-module-heading -->
 					<div class="content-module-main cf">
+                                            
                                             <table>
                                                 <thead>
                                                     <tr>
@@ -92,7 +88,28 @@ $data = new USERS;
                                                 </tfoot>
                                                 <tbody>
                                                     <?php
-                                                    $summary = $data->getWebUsers();
+                                                    include 'classess/user.php';
+                                                    $data = new USERS();
+                                                    
+                                                    $page = 1;
+                                                    $limit = 5;
+                                                    $offset = 0;
+
+                                                    if (!empty($_GET['page'])) {
+                                                        $hal = $_GET['page'] - 1;
+                                                        $offset = $limit * $hal;
+                                                    } else if (!empty($_GET['page']) && $_GET['page'] == 1) {
+                                                        $offset = 0;
+                                                    } else if (empty($_GET['page'])) {
+                                                        $offset = 0;
+                                                    }
+
+                                                    $data->setLimit($limit);
+                                                    $data->setOffset($offset);
+                                                    $data->setPage($page);
+                                                    
+
+                                                    $summary = $data->getPagingWebUsers();
                                                     while ($row = mysql_fetch_array($summary)) {
                                                         ?>
                                                         <tr>
@@ -106,9 +123,34 @@ $data = new USERS;
                                                     <?php } ?>
                                                 </tbody>
                                             </table>
-                                            <ul class="temporary-button-showcase">
-                                                <li><a href="addusersweb.php" class="button round blue image-right ic-add text-upper">Add User</a></li>
-                                            </ul>
+                                            <div class="half-size-column fl">
+                                            <?php
+                                            $dataTable = $data->getWebUsers();
+                                             $totalData = mysql_num_rows($dataTable);
+
+                                            if ($totalData > $limit) {
+                                                echo "Page  ";
+                                                $a = explode(".", $totalData / $limit);
+                                                $b = $a['0'];
+                                                $c = $b + 1;
+                                                for ($i = 1; $i <= $c; $i++) {
+                                                    echo '<a style="text-decoration:none;';
+                                                    if ($_GET['page'] == $i) {
+                                                        echo "color:red";
+                                                    }
+                                                    echo '" href="?page=' . $i . '">|' . $i . '</a>';
+                                                }
+                                            }
+                                            echo "<br/>";
+                                            echo "<br/>Total User : $totalData";
+                                            echo "<br/>";
+                                            ?>
+                                                <br>
+                                                <ul class="temporary-button-showcase">
+                                                    <li><a href="addusersweb.php" class="button round blue image-right ic-add text-upper">Add User</a></li>
+                                                </ul>
+                                            </div>
+                                            <br>
 					</div> <!-- end content-module-main -->
                                       
 				</div> <!-- end content-module -->
