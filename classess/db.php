@@ -1,6 +1,6 @@
 <?php
 /* 
-Halaman class.db.php
+Halaman db.php
 */
 class ConnectionDB {
         private $connect;

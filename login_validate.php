@@ -9,7 +9,7 @@
 <?php
 session_start();
 
-include "classess/class.db.php";
+include "classess/db.php";
 include "config/config.db.php";
 
 $username = $_POST['txtUsername'];

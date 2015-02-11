@@ -3,7 +3,7 @@
 header('Content-Type: text/csv');
 header('Content-Disposition: attachment;filename=exported-data.csv');
 
-include 'classess/class.viewlog.php';
+include 'classess/viewlog.php';
 
 $data = new ViewLog();
 $result = $data->getDownloadLog();

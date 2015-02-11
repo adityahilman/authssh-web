@@ -32,7 +32,7 @@ if ($_SESSION['LEVEL_ADMIN'] != 'superuser') {
 </head>
 <body>
 <?php
-include 'classess/class.user.php';
+include 'classess/user.php';
 $data = new USERS;
 $list = $data->getUsersLinux();
 ?>

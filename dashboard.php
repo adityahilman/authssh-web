@@ -29,7 +29,7 @@ if (!isset($_SESSION['USERNAME_ADMIN']))
 include_once "jpgraph/src/jpgraph.php";
 include_once "jpgraph/src/jpgraph_bar.php";
 include_once "jpgraph/src/jpgraph_line.php";
-include 'classess/class.viewlog.php';
+include 'classess/viewlog.php';
 $data = new ViewLog();
 $list = $data->getViewLastTenLog();
 $topten = $data->getViewTopTenLog();

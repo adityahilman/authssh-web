@@ -8,7 +8,7 @@
 
 include "jpgraph/src/jpgraph.php";
 include "jpgraph/src/jpgraph_bar.php";
-include "classess/class.viewlog.php";
+include "classess/viewlog.php";
 
 $data = new ViewLog();
 

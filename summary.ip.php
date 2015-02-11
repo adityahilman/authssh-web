@@ -11,7 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        include 'classess/class.viewlog.php';
+        include 'classess/viewlog.php';
         $data=new ViewLog();
         $list=$data->getIpSummaryLog();
         ?>

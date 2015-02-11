@@ -12,7 +12,7 @@
  *
  * @author adityahilman
  */
-include "class.db.php";
+include "db.php";
 include dirname(__FILE__) . "/../config/config.db.php";
 
 class USERS {

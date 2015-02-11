@@ -11,7 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        include 'classess/class.user.php';
+        include 'classess/user.php';
         
         $data = new USERS();
         $del_user = $data->getDeleteUser();

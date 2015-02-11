@@ -15,7 +15,7 @@
  * and open the template in the editor.
  */
 
-include "classess/class.user.php";
+include "classess/user.php";
 
 
 $username = $_POST['txtUsername'];

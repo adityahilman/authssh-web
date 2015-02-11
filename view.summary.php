@@ -80,7 +80,7 @@ and open the template in the editor.
                         <div class="content-module-main cf">
                             <div class="content-module-main">
                             <?php
-                            include 'classess/class.viewlog.php';
+                            include 'classess/viewlog.php';
                             $data = new ViewLog();
 
                             $page = 1;

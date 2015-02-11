@@ -32,7 +32,7 @@ if ($_SESSION['LEVEL_ADMIN'] != 'superuser' && $_SESSION['LEVEL_ADMIN'] != 'admi
 </head>
 <body>
 <?php
-include 'classess/class.user.php';
+include 'classess/user.php';
 $data = new USERS;
 
 ?>
