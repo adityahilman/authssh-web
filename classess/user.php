@@ -140,7 +140,7 @@ class USERS {
     }
     
     public function getWebUsers() {
-        $list_user = "SELECT * FROM USER_ADMIN";
+        $list_user = "SELECT * FROM USER_ADMIN GROUP BY ID_ADMIN ASC";
         $c = new ConnectionDB();
         $c->openConnection();
         $query_list_user = mysql_query($list_user) or die(mysql_error());
