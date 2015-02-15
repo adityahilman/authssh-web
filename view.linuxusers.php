@@ -82,6 +82,48 @@ $list = $data->getUsersLinux();
 						<h3 class="fl">Registered Linux Users</h3>
 					</div> <!-- end content-module-heading -->
 					<div class="content-module-main cf">
+                                            <div class="half-size-column fl">
+                                                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                                    <table>
+                                                        <tr>
+                                                            <td>Search Linux User</td>
+                                                            <td><input type="text" id="simple-input" name="txtSearchUsername" class="round default-width-input"/></td>
+                                                            <td><input type="submit" name="btnSearch" id="btnSubmit" class="button round blue image-right ic-right-arrow text-upper" value="Search"/></td>
+                                                        </tr>
+                                                    </table>
+                                                </form>
+                                            </div>
+                                             <?php
+                                            if (isset($_POST['btnSearch'])) {
+                                                $txtSearchUsername = $_POST['txtSearchUsername'];
+                                                if (empty($txtSearchUsername)) {
+                                                    ?> <div class="half-size-column fr"><div class="error-box round">Username is Empty.</div></div>  <?php
+                                                } else {
+                                                    $search = new USERS();
+                                                    $search->setUsername($txtSearchUsername);
+                                                    $result = $search->getSearchUsersLinux();
+                                                    while ($row = mysql_fetch_array($result)) {
+                                                        ?>
+                                                        <table>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Username</th>
+                                                                    <th>Detail</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td height="25px" width="5px"><?= $row['USER_NAME'] ?></td>                                                            
+                                                                    <td height="25px" width="5px"><?= $row['USER_DETAIL'] ?></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                            <?php } ?>
+                                                                <?php
+                                                                
+                                                    }
+                                                    }
+                                                    ?>
                                              <table>
                                                 <thead>
                                                     <tr>

@@ -164,7 +164,13 @@ class USERS {
         $c = new ConnectionDB();
         $c->openConnection();
         $query_search = mysql_query($search_user) or die(mysql_error());
-        return $query_search;
+        if (mysql_num_rows($query_search) != 1)
+        {
+            ?> <script>alert("User not found.");document.location.href="view.webusers.php";</script> <?php
+        }
+        else {
+            return $query_search;
+        }
     }
     
     public function getWebUsers() {

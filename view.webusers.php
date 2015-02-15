@@ -63,6 +63,7 @@ if ($_SESSION['LEVEL_ADMIN'] != 'superuser' && $_SESSION['LEVEL_ADMIN'] != 'admi
 				<h3>Menu</h3>
 				<?php
                                 include 'menu.php';
+                                include 'classess/user.php';
                                 ?>
 			</div> <!-- end side-menu -->			
 			<div class="side-content fr">
@@ -71,6 +72,57 @@ if ($_SESSION['LEVEL_ADMIN'] != 'superuser' && $_SESSION['LEVEL_ADMIN'] != 'admi
 						<h3 class="fl">Users Web</h3>
 					</div> <!-- end content-module-heading -->
 					<div class="content-module-main cf">
+                                            <div class="half-size-column fl">
+                                                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                                    <table>
+                                                        <tr>
+                                                            <td>Search By Username</td>
+                                                            <td><input type="text" id="simple-input" name="txtSearchUsername" class="round default-width-input"/></td>
+                                                            <td><input type="submit" name="btnSearch" id="btnSubmit" class="button round blue image-right ic-right-arrow text-upper" value="Search"/></td>
+                                                        </tr>
+                                                    </table>
+                                                </form>
+                                                </div>
+                                                <?php
+                                                if (isset($_POST['btnSearch']))
+                                                {
+                                                    $txtSearchUsername = $_POST['txtSearchUsername'];
+                                                    if (empty($txtSearchUsername))
+                                                    {
+                                                        ?> <div class="half-size-column fr"><div class="error-box round">Username is Empty.</div></div>  <?php
+                                                    }
+                                                    else
+                                                    {
+                                                        $search = new USERS();
+                                                        $search->setUsername($txtSearchUsername);
+                                                        $result = $search->getSearchUsers();
+                                                        while ($row = mysql_fetch_array($result))
+                                                        {
+                                                            ?>
+                                                        <table>
+                                                            <thead>
+                                                            <tr>
+                                                                <th>Username</th>
+                                                                <th>Email</th>
+                                                                <th>User Level</th>
+                                                                <th>Created By</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td height="25px" width="5px"><?= $row['USERNAME_ADMIN'] ?></td>                                                            
+                                                                <td height="25px" width="5px"><?= $row['EMAIL_ADMIN'] ?></td>
+                                                                <td height="25px" width="5px"><?= $row['LEVEL_ADMIN'] ?></td>
+                                                                <td height="25px" width="5px"><?= $row['CREATED_BY'] ?></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <?php } ?>
+                                                        <?php
+                                                    }
+                                                }
+                                                ?>
+                                            
                                             <table>
                                                 <thead>
                                                     <tr>
@@ -87,7 +139,6 @@ if ($_SESSION['LEVEL_ADMIN'] != 'superuser' && $_SESSION['LEVEL_ADMIN'] != 'admi
                                                 </tfoot>
                                                 <tbody>
                                                     <?php
-                                                    include 'classess/user.php';
                                                     $data = new USERS();
                                                     
                                                     $page = 1;
