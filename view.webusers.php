@@ -71,7 +71,6 @@ if ($_SESSION['LEVEL_ADMIN'] != 'superuser' && $_SESSION['LEVEL_ADMIN'] != 'admi
 						<h3 class="fl">Users Web</h3>
 					</div> <!-- end content-module-heading -->
 					<div class="content-module-main cf">
-                                            
                                             <table>
                                                 <thead>
                                                     <tr>
