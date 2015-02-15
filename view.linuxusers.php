@@ -69,9 +69,7 @@ $list = $data->getUsersLinux();
 	</div> <!-- end header -->	
 	<!-- MAIN CONTENT -->
 	<div id="content">
-		
 		<div class="page-full-width cf">
-
 			<div class="side-menu fl">
 				<h3>Menu</h3>
 				<?php
@@ -87,7 +85,7 @@ $list = $data->getUsersLinux();
                                              <table>
                                                 <thead>
                                                     <tr>
-                                                        <th height="40px" >Username</th>
+                                                        <th>Username</th>
                                                         <th>User Detail</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -118,7 +116,6 @@ $list = $data->getUsersLinux();
 			</div>
 			</div> <!-- end side-content -->
 		</div> <!-- end full-width -->
-	</div> <!-- end content -->
 	<!-- FOOTER -->
 	<div id="footer">
 
